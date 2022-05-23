@@ -1,6 +1,11 @@
 <?php
 
-use App\Http\Controllers\{AccountController, HomeController, PermissionController, RoleController, UserController};
+use App\Http\Controllers\{AccountController,
+    HomeController,
+    PermissionController,
+    RoleController,
+    TestController,
+    UserController};
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +24,7 @@ Route::prefix('admin')->group(function (){
         Route::put('/{user}',  'edit')->name('account.edit');
         Route::get('/{user}', 'deleteAvatar')->name('account.delete-avatar');
     });
+    Route::resource('/tests', TestController::class)->except(['create', 'edit', 'show']);
     Route::resource('/users', UserController::class)->except(['create', 'edit', 'show']);
     Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
     Route::resource('/permissions', PermissionController::class)->except(['create', 'edit', 'show']);

@@ -42,6 +42,12 @@
             </ul>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('tests.index')) collapsed @endif" href="{{ route('tests.index') }}">
+                <i class="bi bi-grid"></i>
+                <span>@lang('admin.sidebar.test')</span>
+            </a>
+        </li>
 
         <!-- With Head -->
         <li class="nav-heading">Pages</li>
