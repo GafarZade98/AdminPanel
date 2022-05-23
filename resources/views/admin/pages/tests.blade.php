@@ -134,7 +134,7 @@
         $('#filterForm').submit()
     })
 
-    $('.edit').on('click', function (e) {
+    $('.edit').on('click', function () {
         let tests = $(this).data('tests');
 
         $('#tests-form input[name="name"]').val(tests.name);
@@ -152,8 +152,7 @@
         $('.modal-submit').html('{{trans('admin.buttons.save')}}')
     })
 
-    $('.create').on('click', function (e) {
-
+    $('.create').on('click', function () {
         let form = "{{route('tests.store')}}"
         $('#tests-form').attr('action', form)
         $('#tests-form input[name="_method"]').val('POST');
@@ -161,18 +160,17 @@
         $('.modal-submit').html('{{trans('admin.buttons.create')}}')
     })
 
-    $('.show').on('click', function (e) {
+    $('.show').on('click', function () {
         let tests = $(this).data('tests');
 
         $('#tests-form input[name="name"]').val(tests.name);
         $('#tests-form input[name="detail"]').val(tests.detail);
-
         $('#tests-form button').hide()
         $('#tests-form :input').attr('disabled', true)
         $('.main-modal').html('{{trans('admin.sidebar.test'). ' '. trans('admin.buttons.show')}}')
     })
 
-    $('.delete').on('click', function (e) {
+    $('.delete').on('click', function () {
         let tests = $(this).data('tests');
 
         let form = "{{route('tests.destroy', 'id')}}".replace('id', tests.id)
@@ -183,18 +181,5 @@
         $('#tests-form button').show()
         $('#tests-form :input').attr('disabled', false)
     });
-
-    // $(document).ready(function() {
-    //     $('#js-example-basic-multiple').select2();
-    // });
-
-    $("#selectPermissions").select2({
-        maximumSelectionLength: 8,
-        dropdownParent: $('#modal'),
-        allowClear: true,
-        theme: 'classic'
-    });
-
-
 </script>
 @endsection
