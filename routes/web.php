@@ -10,7 +10,7 @@ use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 
 Route::any('/', static function () {
-    return view('website.welcome');
+    return view('website.layout');
 });
 
 Auth::routes();

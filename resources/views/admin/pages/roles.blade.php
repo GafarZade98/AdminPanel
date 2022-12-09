@@ -105,7 +105,7 @@
                                     <input name="name" type="text" class="form-control" id="name" placeholder="Role Adı Yazın">
                                 </div>
                                 <div class="form-group col-md-12 mb-2">
-                                    <label for="selectPermissions">@lang('admin.columns.name')</label>
+                                    <label for="selectPermissions">@lang('admin.sidebar.permissions')</label>
                                     <select name="permissions[]" multiple="multiple" style="width: 100%;" id="selectPermissions" >
                                         @foreach($permissions as $permission)
                                             <option value="{{$permission->getAttribute('id')}}" @if($role->permissions->contains('id', $permission->id)) selected @endif>{{$permission->getAttribute('name')}}</option>

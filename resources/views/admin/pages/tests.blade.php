@@ -48,11 +48,11 @@
                     <td>@lang('admin.columns.name')</td>
                     <td>@lang('admin.columns.about')</td>
                     <td>Operator</td>
-                    @can('create', \App\Models\User::class)
+{{--                    @can('create', \App\Models\User::class)--}}
                     <td>
                         <button class="btn btn-outline-success create float-end" data-bs-toggle="modal" data-bs-target="#modal">@lang('admin.buttons.create')</button>
                     </td>
-                    @endcan
+{{--                    @endcan--}}
                 </thead>
 
                 <tbody>

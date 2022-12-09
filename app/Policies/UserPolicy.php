@@ -11,26 +11,36 @@ class UserPolicy
 
     public function viewAny(User $user)
     {
-        return $user->getRelationValue('role')->permissions()->where('name', 'viewAny-users')->exists();
+        return true;
+//        return $user->getRelationValue('role')->permissions()->where('name', 'viewAny-users')->exists();
+
     }
 
     public function view(User $user)
     {
-        return $user->getRelationValue('role')->permissions()->where('name', 'view-users')->exists();
+//        return $user->getRelationValue('role')->permissions()->where('name', 'view-users')->exists();
+        return true;
+
     }
 
     public function create(User $user)
     {
-        return $user->getRelationValue('role')->permissions()->where('name', 'create-users')->exists();
+        return true;
+
+//        return $user->getRelationValue('role')->permissions()->where('name', 'create-users')->exists();
     }
 
     public function update(User $user)
     {
-        return $user->getRelationValue('role')->permissions()->where('name', 'update-users')->exists();
+        return true;
+
+//        return $user->getRelationValue('role')->permissions()->where('name', 'update-users')->exists();
     }
 
     public function delete(User $user)
     {
-        return $user->getRelationValue('role')->permissions()->where('name', 'delete-users')->exists();
+        return true;
+
+//        return $user->getRelationValue('role')->permissions()->where('name', 'delete-users')->exists();
     }
 }

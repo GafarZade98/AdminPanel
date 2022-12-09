@@ -66,9 +66,11 @@
                         </td>
                     </tr>
                 @empty
-                    <div class="alert alert-primary" role="alert">
-                        @lang('admin.notification.empty')
-                    </div>
+                    <tr>
+                        <div class="alert alert-primary" role="alert">
+                            @lang('admin.notification.empty')
+                        </div>
+                    </tr>
                 @endforelse
                 </tbody>
             </table>
