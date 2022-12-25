@@ -9,11 +9,6 @@ class ProductPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
     public function viewAny(User $user)
     {
         return $user->getRelationValue('role')->permissions()->where('name', 'viewAny-products')->exists();

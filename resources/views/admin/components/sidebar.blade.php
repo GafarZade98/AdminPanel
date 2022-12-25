@@ -87,6 +87,13 @@
                 <span>@lang('admin.sidebar.orders')</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('banners.index')) collapsed @endif"
+               href="{{ route('banners.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.banners')</span>
+            </a>
+        </li>
 
     </ul>
 

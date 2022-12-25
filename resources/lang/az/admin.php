@@ -11,6 +11,7 @@ return [
         'categories' => 'Kategoriyalar',
         'products' => 'Mallar',
         'orders' => 'Sifarişlər',
+        'banners' => 'Bannerlər',
     ],
 
     'notification' => [
@@ -53,8 +54,8 @@ return [
         'value' => 'Dəyər',
         'type' => 'Tip',
         'status' => 'Status',
-        'description' => 'Description',
-        'ordering' => 'Ordering',
+        'description' => 'Açıqlama',
+        'ordering' => 'Sıralama',
         'parent-category' => 'Ana Kategoriya',
     ],
 
@@ -62,6 +63,7 @@ return [
         'name' => 'Ad Daxil Edin...',
         'description' => 'Açıqlama Daxil Edin...',
         'key' => 'Açar Söz Daxil Edin...',
+        'ordering' => 'Sıra Sayı Daxil Edin...',
     ],
 
 ];

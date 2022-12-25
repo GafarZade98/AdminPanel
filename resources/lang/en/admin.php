@@ -11,6 +11,7 @@ return [
         'categories' => 'Categories',
         'products' => 'Products',
         'orders' => 'Orders',
+        'banners' => 'Banners',
     ],
 
     'notification' => [
@@ -53,8 +54,8 @@ return [
         'value' => 'Value',
         'type' => 'Type',
         'status' => 'Status',
-        'description' => 'Açıqlama',
-        'ordering' => 'Sıralama',
+        'description' => 'Description',
+        'ordering' => 'Ordering',
         'parent-category' => 'Parent Category',
 
     ],
@@ -63,6 +64,7 @@ return [
         'name' => 'Enter Name',
         'description' => 'Enter Description',
         'key' => 'Enter Keyword',
+        'ordering' => 'Enter Ordering',
     ],
 
 ];

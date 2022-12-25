@@ -4,13 +4,13 @@
     <main id="main" class="main">
         <div>
             <div class="page-title">
-                <h1>@lang('admin.sidebar.products')</h1>
+                <h1>@lang('admin.sidebar.banners')</h1>
                 <x-bread-crumb>
                     <x-bread-crumb-link :link="route('account.index')">
                         @lang('admin.sidebar.dashboard')
                     </x-bread-crumb-link>
                     <x-bread-crumb-link>
-                        @lang('admin.sidebar.products')
+                        @lang('admin.sidebar.banners')
                     </x-bread-crumb-link>
                 </x-bread-crumb>
             </div>
@@ -18,7 +18,7 @@
 
         <section class="my-2">
             <div class="row">
-                <form action="{{ route('products.index') }}" id="filterForm">
+                <form action="{{ route('banners.index') }}" id="filterForm">
                     <div class="row">
                         <div class="col-md-3 mb-2">
                             <div class="input-group">
@@ -47,29 +47,23 @@
                     <th>#</th>
                     <td>@lang('admin.columns.image')</td>
                     <td>@lang('admin.columns.name')</td>
-                    <td>@lang('admin.columns.category')</td>
-                    <td>@lang('admin.columns.description')</td>
-                    <td>@lang('admin.columns.key')</td>
                     <td>@lang('admin.columns.status')</td>
-                    @can('create', \App\Models\Product::class)
+                    @can('create', \App\Models\Banner::class)
                         <td><button class="btn btn-outline-success create" data-bs-toggle="modal" data-bs-target="#modal">@lang('admin.buttons.create')</button></td>
                     @endcan
                     </thead>
 
                     <tbody>
-                    @foreach($products as $product)
+                    @foreach($banners as $banner)
                         <tr>
-                            <th>{{$loop->iteration}}</th>
-                            <td><img src="{{image($product->getAttribute('image'))}}" width="75" alt=""></td>
-                            <td>{{$product->getAttribute('name')}}</td>
-                            <td>{{$product->getRelationValue('category')->getAttribute('name')}}</td>
-                            <td>{{$product->getAttribute('description')}}</td>
-                            <td>{{$product->getAttribute('keyword')}}</td>
-                            <td>@if ($product->getAttribute('is_active') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
+                            <th>{{$banner->getAttribute('ordering')}}</th>
+                            <td><img src="{{image($banner->getAttribute('image'))}}" width="75" alt=""></td>
+                            <td>{{$banner->getAttribute('name')}}</td>
+                            <td>@if ($banner->getAttribute('is_active') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
                             <td>
-                                <a data-products='@json($product)' class="show" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-eye mx-2"></i></a>
-                                <a data-products='@json($product)' class="edit" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-pen mx-2"></i></a>
-                                <a data-products='@json($product)' class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash mx-2"></i></a>
+                                <a data-banners='@json($banner)' class="show" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-eye mx-2"></i></a>
+                                <a data-banners='@json($banner)' class="edit" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-pen mx-2"></i></a>
+                                <a data-banners='@json($banner)' class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash mx-2"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -104,7 +98,7 @@
                                 <h5 class="modal-title main-modal" id="modalLabel"></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="" method="POST" id="products-form"  enctype="multipart/form-data">
+                            <form action="" method="POST" id="banners-form"  enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row">
@@ -124,44 +118,13 @@
                                             <input name="name" type="text" class="form-control" id="name" placeholder="@lang('admin.placeholders.name')">
                                         </div>
 
-                                        <div class="form-group col-md-4">
-                                            <label for="category_id">@lang('admin.columns.category')</label>
-                                            <select name="category_id" id="category_id" class="form-select">
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category->getAttribute('id')}}">
-                                                        {{$category->getAttribute('name')}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-6 mb-2 password">
-                                            <label for="description">@lang('admin.columns.description')</label>
-                                            <input name="description" type="text" class="form-control" id="description" placeholder="@lang('admin.placeholders.description')">
-                                        </div>
-
                                         <div class="form-group col-md-6 mb-2">
-                                            <label for="keyword">@lang('admin.columns.key')</label>
-                                            <input type="text" name="keyword" class="form-control" id="keyword" placeholder="@lang('admin.placeholders.key')">
-                                        </div>
-
-                                        <div class="form-group col-md-6 mb-2">
-                                            <label for="price">@lang('admin.columns.price')</label>
-                                            <input type="number" name="price" class="form-control" id="price" placeholder="@lang('admin.placeholders.price')">
-                                        </div>
-
-                                        <div class="form-group col-md-6 mb-2">
-                                            <label for="tax">@lang('admin.columns.tax')</label>
-                                            <input type="number" name="tax" class="form-control" id="tax" placeholder="@lang('admin.placeholders.tax')">
-                                        </div>
-
-                                        <div class="form-group col-md-6 mb-2">
-                                            <label for="stock">@lang('admin.columns.stock')</label>
-                                            <input type="number" name="stock" class="form-control" id="stock" placeholder="@lang('admin.placeholders.stock')">
+                                            <label for="ordering">@lang('admin.columns.ordering')</label>
+                                            <input type="text" name="ordering" class="form-control" id="ordering" placeholder="@lang('admin.placeholders.ordering')">
                                         </div>
 
                                         <div class="form-check form-switch col-md-6 m-2 ms-3">
-                                            <label class="form-check-label" for="is_active">@lang('admin.fields.active')</label>
+                                            <label class="form-check-label" for="is_active">@lang('admin.columns.status')</label>
                                             <input type="checkbox" name="is_active" class="form-check-input" id="is_active">
                                         </div>
 
@@ -179,7 +142,7 @@
             </div>
         </section>
         <div class="float-end">
-            {{$products->appends(request()->input())->links()}}
+            {{$banners->appends(request()->input())->links()}}
         </div>
     </main>
     <script>
@@ -189,70 +152,60 @@
         })
 
         $('.edit').on('click', function () {
-            let products = $(this).data('products');
+            let banners = $(this).data('banners');
 
-            $('#products-form select[name="category_id"]').val(products.category_id)
-            $('#products-form #image-show').attr('src', 'https://kombi.test/storage/' + products.image);
-            // $('#products-form input[name="value"]').val(products.value);
-            $('#products-form input[name="name"]').val(products.name);
-            $('#products-form input[name="description"]').val(products.description);
-            $('#products-form input[name="keyword"]').val(products.keyword);
-            $('#products-form input[name="price"]').val(products.price);
-            $('#products-form input[name="tax"]').val(products.tax);
-            $('#products-form input[name="stock"]').val(products.stock);
-            if (products.is_active === 1) {
-                $('#products-form input[type="checkbox"]').prop('checked', true);
+            $('#banners-form #image-show').attr('src', 'https://kombi.test/storage/' + banners.image);
+            $('#banners-form input[name="name"]').val(banners.name);
+            $('#banners-form input[name="ordering"]').val(banners.ordering);
+
+            if (banners.is_active === 1) {
+                $('#banners-form input[type="checkbox"]').prop('checked', true);
             }
 
-            let form = "{{route('products.update', 'id')}}".replace('id', products.id)
-            $('#products-form').attr('action', form)
+            let form = "{{route('banners.update', 'id')}}".replace('id', banners.id)
+            $('#banners-form').attr('action', form)
             $('<input>').attr({
                 type: 'hidden',
                 value: 'PUT',
                 name: '_method'
-            }).appendTo('#products-form');
+            }).appendTo('#banners-form');
 
-            $('.main-modal').html('{{trans('admin.sidebar.products'). ' '. trans('admin.buttons.edit')}}')
+            $('.main-modal').html('{{trans('admin.sidebar.banners'). ' '. trans('admin.buttons.edit')}}')
             $('.modal-submit').html('{{trans('admin.buttons.save')}}')
         })
 
         $('.create').on('click', function () {
 
-            let form = "{{route('products.store')}}"
-            $('#products-form').attr('action', form)
-            $('#products-form input[name="_method"]').val('POST');
-            $('.main-modal').html('{{trans('admin.sidebar.products'). ' '. trans('admin.buttons.create')}}')
+            let form = "{{route('banners.store')}}"
+            $('#banners-form').attr('action', form)
+            $('#banners-form input[name="_method"]').val('POST');
+            $('.main-modal').html('{{trans('admin.sidebar.banners'). ' '. trans('admin.buttons.create')}}')
             $('.modal-submit').html('{{trans('admin.buttons.create')}}')
             $('#image-show').hide()
         })
 
         $('.show').on('click', function () {
-            let products = $(this).data('products');
-            if (products.is_active === 1) {
-                $('#products-form input[type="checkbox"]').prop('checked', true);
+            let banners = $(this).data('banners');
+            if (banners.is_active === 1) {
+                $('#banners-form input[type="checkbox"]').prop('checked', true);
             }
-            $('#products-form input[name="name"]').val(products.name);
-            $('#products-form select[name="category_id"]').val(products.category_id)
-            $('#products-form #image-show').attr('src', 'https://kombi.test/storage/' + products.image);
-            $('#products-form input[name="description"]').val(products.description);
-            $('#products-form input[name="keyword"]').val(products.keyword);
-            $('#products-form input[name="price"]').val(products.price);
-            $('#products-form input[name="tax"]').val(products.tax);
-            $('#products-form input[name="stock"]').val(products.stock);
-            $('#products-form button').hide()
-            $('#products-form :input').attr('disabled', true)
-            $('.main-modal').html('{{trans('admin.sidebar.products'). ' '. trans('admin.buttons.show')}}')
+            $('#banners-form input[name="name"]').val(banners.name);
+            $('#banners-form #image-show').attr('src', 'https://kombi.test/storage/' + banners.image);
+            $('#banners-form input[name="ordering"]').val(banners.ordering);
+            $('#banners-form button').hide()
+            $('#banners-form :input').attr('disabled', true)
+            $('.main-modal').html('{{trans('admin.sidebar.banners'). ' '. trans('admin.buttons.show')}}')
         })
 
         $('.delete').on('click', function () {
-            let products = $(this).data('products');
-            let form = "{{route('products.destroy', 'id')}}".replace('id', products.id)
+            let banners = $(this).data('banners');
+            let form = "{{route('banners.destroy', 'id')}}".replace('id', banners.id)
             $('#delete-form').attr('action', form)
         })
 
         $("#modal").on("hidden.bs.modal", function () {
-            $('#products-form button').show()
-            $('#products-form :input').attr('disabled', false)
+            $('#banners-form button').show()
+            $('#banners-form :input').attr('disabled', false)
         });
     </script>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{AccountController,
+    BannerController,
     CategoryController,
     HomeController,
     OrderController,
@@ -34,6 +35,7 @@ Route::prefix('admin')->group(function (){
     Route::resource('/categories', CategoryController::class)->except(['create', 'edit', 'show']);
     Route::resource('/products', ProductController::class)->except(['create', 'edit', 'show']);
     Route::resource('/orders', OrderController::class)->except(['create', 'edit', 'show']);
+    Route::resource('/banners', BannerController::class)->except(['create', 'edit', 'show']);
 });
 Route::get('file-export', [UserController::class, 'userExport'])->name('file-export');
 Localization::route();

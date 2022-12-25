@@ -144,8 +144,8 @@
                                         <input name="ordering" class="form-control" id="ordering" placeholder="@lang('admin.columns.ordering') Yazın">
                                     </div>
 
-                                    <div class="form-group col-md-12 ">
-                                        <label class="form-check-label" for="status">Status</label>
+                                    <div class="form-check form-switch col-md-6 m-2 ms-3">
+                                        <label class="form-check-label" for="status">@lang('admin.fields.active')</label>
                                         <input type="checkbox" name="status" class="form-check-input" id="status">
                                     </div>
 

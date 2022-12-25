@@ -145,8 +145,8 @@
                                         <input name="keyword" class="form-control" id="keyword" placeholder="@lang('admin.placeholders.key')">
                                     </div>
 
-                                    <div class="form-group col-md-12 ">
-                                        <label class="form-check-label" for="status">@lang('admin.columns.status')</label>
+                                    <div class="form-check form-switch col-md-6 m-2 ms-3">
+                                        <label class="form-check-label" for="is_active">@lang('admin.fields.active')</label>
                                         <input type="checkbox" name="is_active" class="form-check-input" id="is_active">
                                     </div>
 

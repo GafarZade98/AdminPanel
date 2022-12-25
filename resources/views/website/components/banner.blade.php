@@ -5,12 +5,11 @@
             <div class="swiper-viewport">
                 <div id="slideshow0" class="swiper-container" style="opacity: 1;">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide text-center"><a href="#"><img
-                                    src="{{asset('assets/img/frontend/image/cache/catalog/banners/main-banner-01-1920x666.png')}}"
-                                    alt="main-banner1" class="img-responsive"/></a></div>
-                        <div class="swiper-slide text-center"><a href="#"><img
-                                    src="{{asset('assets/img/frontend/image/cache/catalog/banners/main-banner-02-1920x666.png')}}"
-                                    alt="main-banner2" class="img-responsive"/></a></div>
+                        @foreach($banners as $banner)
+                        <div class="swiper-slide text-center">
+                            <a href="#"><img src="{{image($banner->getAttribute('image'))}}" alt="banner" class="img-responsive"/></a>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="swiper-pagination slideshow0"></div>

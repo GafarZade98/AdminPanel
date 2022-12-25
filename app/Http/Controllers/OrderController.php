@@ -2,84 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
+        $this->authorizeResource(Order::class);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $search = $request->get('search');
+        $limit = $request->get('limit');
+
+        return view('admin.pages.orders')->with([
+            'orders' => Order::query()
+                ->when($search, fn ($query) => $query
+                    ->where('name', 'like', "%$search%"))
+                ->paginate($limit),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(OrderRequest $request): RedirectResponse
     {
-        //
+        $validated = $request->validated();
+        $validated['is_active'] = $request->has('is_active');
+        if ($request->file('image')) {
+
+            $image_value = $request->file('image');
+            $validated['image'] = $image_value->storeAs('orders', $image_value->hashName());
+        }
+
+        Order::create($validated);
+        return back()->with('success', trans('admin.notification.success'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+    public function update(OrderRequest $request, Order $order): RedirectResponse
     {
-        //
+        $validated = $request->validated();
+        $validated['is_active'] = $request->has('is_active');
+
+        $order->update($validated);
+        return back()->with('success', trans('admin.notification.success'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
+    public function destroy(Order $order): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        $order->delete();
+        return back()->with('success', trans('admin.notification.success'));
     }
 }

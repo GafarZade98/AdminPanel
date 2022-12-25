@@ -4,13 +4,13 @@
 <main id="main" class="main">
     <div>
         <div class="page-title">
-            <h1>@lang('admin.sidebar.settings')</h1>
+            <h1>@lang('admin.sidebar.orders')</h1>
             <x-bread-crumb>
                 <x-bread-crumb-link :link="route('account.index')">
                     @lang('admin.sidebar.dashboard')
                 </x-bread-crumb-link>
                 <x-bread-crumb-link>
-                    @lang('admin.sidebar.settings')
+                    @lang('admin.sidebar.orders')
                 </x-bread-crumb-link>
             </x-bread-crumb>
         </div>
@@ -18,7 +18,7 @@
 
     <section class="my-2">
         <div class="row">
-            <form action="{{ route('settings.index') }}" id="filterForm">
+            <form action="{{ route('orders.index') }}" id="filterForm">
                 <div class="row">
                     <div class="col-md-3 mb-2">
                         <div class="input-group">
@@ -49,23 +49,24 @@
                     <td>@lang('admin.columns.value')</td>
                     <td>@lang('admin.columns.type')</td>
                     <td>@lang('admin.columns.status')</td>
-                    @can('create', \App\Models\Setting::class)
+                    @can('create', \App\Models\Order::class)
                     <td><button class="btn btn-outline-success create" data-bs-toggle="modal" data-bs-target="#modal">@lang('admin.buttons.create')</button></td>
                     @endcan
                 </thead>
 
                 <tbody>
-                @foreach($settings as $setting)
+                @foreach($orders as $order)
                     <tr>
-                        <th>{{$setting->getAttribute('ordering')}}</th>
-                        <td>{{$setting->getAttribute('key')}}</td>
-                        <td>{{$setting->getAttribute('value')}}</td>
-                        <td>{{$setting->getAttribute('type')}}</td>
-                        <td>@if ($setting->getAttribute('status') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
+                        <th>{{$order->getAttribute('ordering')}}</th>
+                        <td>{{$order->getAttribute('key')}}</td>
+                        <td>{{$order->getAttribute('value')}}</td>
+                        <td>{{$order->getAttribute('type')}}</td>
+                        <td>@if ($order->getAttribute('status') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
                         <td>
-                            <a data-settings='@json($setting)' class="show" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-eye mx-2"></i></a>
-                            <a data-settings='@json($setting)' class="edit" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-pen mx-2"></i></a>
-                            <a data-settings='@json($setting)' class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash mx-2"></i></a>
+                            <a data-orders='@json($order)' class="show" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-eye mx-2"></i></a>
+                            @can('delete', \App\Models\Order::class)
+                                <a data-orders='@json($order)' class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash mx-2"></i></a>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
@@ -100,21 +101,10 @@
                             <h5 class="modal-title main-modal" id="modalLabel"></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="" method="POST" id="settings-form"  enctype="multipart/form-data">
+                        <form action="" method="POST" id="orders-form"  enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="mb-3 image-value">
-                                        <label for="value" class="col-md-4 col-lg-3 col-form-label">@lang('admin.columns.value')</label>
-                                        <div class="col-md-4 col-lg-9">
-                                            <img id="image" src="" width="150" alt="Profile">
-                                            <div class="pt-2">
-                                                <label for="value"><i class="bi bi-upload btn btn-success btn-sm"></i></label>
-                                                <input type="file" name="value" class="d-none" id="value">
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="form-group col-md-6 mb-2">
                                         <label for="key">@lang('admin.columns.key')</label>
                                         <input name="key" type="text" class="form-control" id="key" placeholder="Key Yazın">
@@ -153,7 +143,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('admin.buttons.close')</button>
-                                <button type="submit" class="btn btn-primary modal-submit"></button>
                             </div>
                         </form>
                     </div>
@@ -163,7 +152,7 @@
         </div>
     </section>
     <div class="float-end">
-        {{$settings->appends(request()->input())->links()}}
+        {{$orders->appends(request()->input())->links()}}
     </div>
 </main>
 <script>
@@ -171,97 +160,25 @@
     $('#limit').change(function () {
         $('#filterForm').submit()
     })
-    $('.image-value').hide()
-    $("#type").change(function () {
-
-        if ($("#type").val() === 'file') {
-            $('.image-value').show()
-            $('.text-value').hide();
-        } else {
-            $('.image-value').hide()
-            $('.text-value').show();
-        }
-    });
-
-    $('.edit').on('click', function () {
-        let settings = $(this).data('settings');
-
-        $('#settings-form select[name="type"]').val(settings.type)
-        if (settings.type === 'file') {
-            $('.image-value').show();
-            $('.text-value').hide();
-            $('#settings-form #image').attr('src', 'https://kombi.test/storage/' + settings.value);
-            // $('#settings-form input[name="value"]').val(settings.value);
-        } else {
-            $('.image-value').hide();
-            $('.text-value').show();
-            $('#settings-form textarea[name="value"]').val(settings.value)
-        }
-        $('#settings-form input[name="key"]').val(settings.key);
-
-        $('#settings-form input[name="description"]').val(settings.description);
-        $('#settings-form input[name="ordering"]').val(settings.ordering);
-        if (settings.status === 1) {
-            $('#settings-form input[type="checkbox"]').prop('checked', true);
-        }
-
-        let form = "{{route('settings.update', 'id')}}".replace('id', settings.id)
-        $('#settings-form').attr('action', form)
-        $('<input>').attr({
-            type: 'hidden',
-            value: 'PUT',
-            name: '_method'
-        }).appendTo('#settings-form');
-
-        $('.main-modal').html('{{trans('admin.sidebar.settings'). ' '. trans('admin.buttons.edit')}}')
-        $('.modal-submit').html('{{trans('admin.buttons.save')}}')
-    })
-
-    $('.create').on('click', function () {
-
-        let form = "{{route('settings.store')}}"
-        $('#settings-form').attr('action', form)
-        $('#settings-form input[name="_method"]').val('POST');
-        $('.main-modal').html('{{trans('admin.sidebar.settings'). ' '. trans('admin.buttons.create')}}')
-        $('.modal-submit').html('{{trans('admin.buttons.create')}}')
-        $('#image').hide()
-    })
 
     $('.show').on('click', function () {
-        let settings = $(this).data('settings');
-        if (settings.status === 1) {
-            $('#settings-form input[type="checkbox"]').prop('checked', true);
-        }
-        $('#settings-form input[name="key"]').val(settings.key);
+        let orders = $(this).data('orders');
 
-        $('#settings-form select[name="type"]').val(settings.type)
-
-        $('#settings-form select[name="type"]').val(settings.type)
-        if (settings.type == 'file') {
-            $('.image-value').show();
-            $('.text-value').hide();
-            $('#settings-form #image').attr('src', 'https://kombi.test/storage/' + settings.value);
-        } else {
-            $('.image-value').hide();
-            $('.text-value').show();
-            $('#settings-form textarea[name="value"]').val(settings.value)
-        }
-        $('#settings-form input[name="description"]').val(settings.description);
-        $('#settings-form input[name="ordering"]').val(settings.ordering);
-        $('#settings-form button').hide()
-        $('#settings-form :input').attr('disabled', true)
-        $('.main-modal').html('{{trans('admin.sidebar.settings'). ' '. trans('admin.buttons.show')}}')
+        $('#orders-form input[name="description"]').val(orders.description);
+        $('#orders-form input[name="ordering"]').val(orders.ordering);
+        $('#orders-form :input').attr('disabled', true)
+        $('.main-modal').html('{{trans('admin.sidebar.orders'). ' '. trans('admin.buttons.show')}}')
     })
 
     $('.delete').on('click', function () {
-        let settings = $(this).data('settings');
-        let form = "{{route('settings.destroy', 'id')}}".replace('id', settings.id)
+        let orders = $(this).data('orders');
+        let form = "{{route('orders.destroy', 'id')}}".replace('id', orders.id)
         $('#delete-form').attr('action', form)
     })
 
-    $("#modal").on("hidden.bs.modal", function () {
-        $('#settings-form button').show()
-        $('#settings-form :input').attr('disabled', false)
-    });
+    // $("#modal").on("hidden.bs.modal", function () {
+    //     $('#orders-form button').show()
+    //     $('#orders-form :input').attr('disabled', false)
+    // });
 </script>
 @endsection
