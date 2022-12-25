@@ -209,7 +209,7 @@
         {
             $('#users-form input[type="checkbox"]').prop('checked', true);
         }
-        $('#users-form #image').attr('src','https://admin.test/storage/' + users.avatar);
+        $('#users-form #image').attr('src','https://kombi.test/storage/' + users.avatar);
         $('#users-form input[name="name"]').val(users.name);
         $('#users-form input[name="phone"]').val(users.phone)
         $('#users-form input[name="company"]').val(users.company)
@@ -249,7 +249,7 @@
         {
             $('#users-form input[type="checkbox"]').prop('checked', true);
         }
-        $('#users-form #image').attr('src','https://admin.test/storage/' + users.avatar);
+        $('#users-form #image').attr('src','https://kombi.test/storage/' + users.avatar);
         $('#users-form input[name="name"]').val(users.name);
         $('#users-form input[name="phone"]').val(users.phone)
         $('#users-form input[name="company"]').val(users.company)

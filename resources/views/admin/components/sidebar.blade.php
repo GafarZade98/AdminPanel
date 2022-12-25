@@ -42,6 +42,14 @@
             </ul>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('settings.index')) collapsed @endif"
+               href="{{ route('settings.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.settings')</span>
+            </a>
+        </li>
+
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link @if(request()->url() !== route('tests.index')) collapsed @endif" href="{{ route('tests.index') }}">--}}
 {{--                <i class="bi bi-grid"></i>--}}

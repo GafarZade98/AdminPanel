@@ -187,7 +187,7 @@
     // });
 
     $("#selectPermissions").select2({
-        maximumSelectionLength: 8,
+        maximumSelectionLength: 500,
         dropdownParent: $('#modal'),
         allowClear: true,
         theme: 'classic'
