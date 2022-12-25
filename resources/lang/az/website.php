@@ -7,10 +7,6 @@ return [
         'roles' => 'Rollar',
         'profile' => 'Profil',
         'permissions' => 'İcazələr',
-        'settings' => 'Ayarlar',
-        'categories' => 'Kategoriyalar',
-        'products' => 'Mallar',
-        'orders' => 'Sifarişlər',
     ],
 
     'notification' => [
@@ -32,11 +28,6 @@ return [
         'search' => 'Axtar',
     ],
 
-    'fields' => [
-        'active' => 'Aktiv',
-        'passive' => 'Passiv',
-    ],
-
     'columns' => [
         'name' => 'Adı',
         'name_s' => 'Ad Soyad',
@@ -49,19 +40,5 @@ return [
         'role' => 'Rol',
         'company' => 'Şirkət',
         'date' => 'Tarix',
-        'key' => 'Açar Söz',
-        'value' => 'Dəyər',
-        'type' => 'Tip',
-        'status' => 'Status',
-        'description' => 'Description',
-        'ordering' => 'Ordering',
-        'parent-category' => 'Ana Kategoriya',
     ],
-
-    'placeholders' => [
-        'name' => 'Ad Daxil Edin...',
-        'description' => 'Açıqlama Daxil Edin...',
-        'key' => 'Açar Söz Daxil Edin...',
-    ],
-
 ];

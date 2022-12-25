@@ -7,6 +7,10 @@ return [
         'roles' => 'Roles',
         'profile' => 'Profile',
         'permissions' => 'Permissions',
+        'settings' => 'Settings',
+        'categories' => 'Categories',
+        'products' => 'Products',
+        'orders' => 'Orders',
     ],
 
     'notification' => [
@@ -28,6 +32,11 @@ return [
         'search' => 'Search',
     ],
 
+    'fields' => [
+        'active' => 'Active',
+        'passive' => 'Passive',
+    ],
+
     'columns' => [
         'name' => 'Name',
         'name_s' => 'Name Surname',
@@ -40,10 +49,20 @@ return [
         'role' => 'Role',
         'company' => 'Company',
         'date' => 'Date',
+        'key' => 'Key',
+        'value' => 'Value',
+        'type' => 'Type',
+        'status' => 'Status',
+        'description' => 'Açıqlama',
+        'ordering' => 'Sıralama',
+        'parent-category' => 'Parent Category',
+
     ],
 
-    'placeholder' => [
-
+    'placeholders' => [
+        'name' => 'Enter Name',
+        'description' => 'Enter Description',
+        'key' => 'Enter Keyword',
     ],
 
 ];

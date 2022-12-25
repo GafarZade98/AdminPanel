@@ -16,7 +16,7 @@ class PermissionController extends Controller
         return view('admin.pages.permissions')->with([
             'permissions' => Permission::query()
                 ->when($search, fn ($query) => $query->where('name', 'like', "%$search%"))
-                ->paginate($limit),
+                ->orderBy('name')->paginate($limit),
         ]);
     }
 

@@ -59,11 +59,32 @@
 
         <!-- With Head -->
         <li class="nav-heading">Pages</li>
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link @if(request()->url() !== route('account.index')) collapsed @endif"--}}
+{{--               href="{{ route('account.index') }}">--}}
+{{--                <i class="bi bi-person"></i>--}}
+{{--                <span>Profile</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         <li class="nav-item">
-            <a class="nav-link @if(request()->url() !== route('account.index')) collapsed @endif"
-               href="{{ route('account.index') }}">
+            <a class="nav-link @if(request()->url() !== route('categories.index')) collapsed @endif"
+               href="{{ route('categories.index') }}">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>@lang('admin.sidebar.categories')</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('products.index')) collapsed @endif"
+               href="{{ route('products.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.products')</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('orders.index')) collapsed @endif"
+               href="{{ route('orders.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.orders')</span>
             </a>
         </li>
 

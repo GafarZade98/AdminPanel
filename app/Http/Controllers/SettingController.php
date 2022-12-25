@@ -22,8 +22,8 @@ class SettingController extends Controller
         return view('admin.pages.settings')->with([
             'settings' => Setting::query()
                 ->when($search, fn ($query) => $query
-                        ->where('key', 'like', "%$search%")
-                        ->orWhere('value', 'like', "%$search%"))
+                    ->where('key', 'like', "%$search%")
+                    ->orWhere('value', 'like', "%$search%"))
                 ->paginate($limit),
         ]);
     }
