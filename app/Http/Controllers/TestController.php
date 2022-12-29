@@ -8,33 +8,43 @@ use App\{Http\Requests\TestRequest, Models\Test};
 class TestController extends Controller
 
 {
-    public function index(Request $request)
+    public function product(Request $request)
     {
-        $search = $request->get('search');
-        $limit = $request->get('limit');
-
-        return view('admin.pages.tests')->with([
-            'tests' => Test::query()
-                ->when($search, fn ($query) => $query->where('name', 'like', "%$search%"))
-                ->paginate($limit),
-        ]);
+        return view('website.pages.product');
     }
 
-    public function store(TestRequest $request): RedirectResponse
+    public function about(Request $request)
     {
-        Test::create($request->validated());
-        return back()->with('success', trans('admin.notification.success'));
+        return view('website.pages.about');
     }
 
-    public function update(TestRequest $request, Test $test): RedirectResponse
+    public function contact(Request $request)
     {
-        $test->update($request->validated());
-        return back()->with('success', trans('admin.notification.success'));
+        return view('website.pages.contact');
     }
 
-    public function destroy(Test $test): RedirectResponse
+    public function homepage(Request $request)
     {
-        $test->delete();
-        return back()->with('success', trans('admin.notification.success'));
+        return view('website.pages.homepage');
+    }
+
+    public function login(Request $request)
+    {
+        return view('website.components.login');
+    }
+
+    public function register(Request $request)
+    {
+        return view('website.components.register');
+    }
+
+    public function blogs(Request $request)
+    {
+        return view('website.pages.blogs');
+    }
+
+    public function blog(Request $request)
+    {
+        return view('website.pages.blog');
     }
 }

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class Solution extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image', 'ordering', 'is_active'];
+    protected $fillable = ['image', 'title', 'description', 'link', 'ordering', 'is_active', ];
 
     public function scopeActive($query)
     {

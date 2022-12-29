@@ -27,4 +27,9 @@ class Product extends Model
 
         return $code;
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

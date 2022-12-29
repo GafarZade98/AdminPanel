@@ -2,25 +2,18 @@
 
 namespace App\View\Components;
 
+use App\Models\Product;
 use Illuminate\View\Component;
 
 class RecentProducts extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
+    public $recentProducts;
+
     public function __construct()
     {
-        //
+        $this->recentProducts = Product::active()->inRandomOrder(12)->get();
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
     public function render()
     {
         return view('website.components.recent-products');

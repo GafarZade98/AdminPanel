@@ -2,25 +2,19 @@
 
 namespace App\View\Components;
 
+use App\Models\Solution;
 use Illuminate\View\Component;
 
 class Solutions extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
+
+    public $solutions;
+
     public function __construct()
     {
-        //
+        $this->solutions = Solution::active()->get();
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
     public function render()
     {
         return view('website.components.solutions');

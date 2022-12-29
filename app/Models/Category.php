@@ -16,4 +16,9 @@ class Category extends Model
     {
       return $this->belongsTo(self::class)->withDefault();
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

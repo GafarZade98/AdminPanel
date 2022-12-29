@@ -9,6 +9,7 @@ use App\Http\Controllers\{AccountController,
     ProductController,
     RoleController,
     SettingController,
+    SolutionController,
     TestController,
     UserController};
 use App\Http\Middleware\Localization;
@@ -32,10 +33,22 @@ Route::prefix('admin')->group(function (){
     Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
     Route::resource('/permissions', PermissionController::class)->except(['create', 'edit', 'show']);
     Route::resource('/settings', SettingController::class)->except(['create', 'edit', 'show']);
+    Route::resource('/solutions', SolutionController::class)->except(['create', 'edit', 'show']);
     Route::resource('/categories', CategoryController::class)->except(['create', 'edit', 'show']);
     Route::resource('/products', ProductController::class)->except(['create', 'edit', 'show']);
     Route::resource('/orders', OrderController::class)->except(['create', 'edit', 'show']);
     Route::resource('/banners', BannerController::class)->except(['create', 'edit', 'show']);
 });
+
+Route::get('homepage', [TestController::class, 'homepage'])->name('homepage');
+Route::get('product', [TestController::class, 'product'])->name('product');
+Route::get('products', [TestController::class, 'products'])->name('products');
+Route::get('login', [TestController::class, 'login'])->name('login');
+Route::get('register', [TestController::class, 'register'])->name('register');
+Route::get('about', [TestController::class, 'about'])->name('about');
+Route::get('contact', [TestController::class, 'contact'])->name('contact');
+Route::get('blogs', [TestController::class, 'blogs'])->name('blogs');
+Route::get('blog', [TestController::class, 'blog'])->name('blog');
+
 Route::get('file-export', [UserController::class, 'userExport'])->name('file-export');
 Localization::route();
