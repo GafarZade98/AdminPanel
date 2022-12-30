@@ -62,7 +62,7 @@
                         <th>{{$loop->iteration}}</th>
                         <td><img src="{{image($category->getAttribute('image'))}}" width="75" alt=""></td>
                         <td>{{$category->getAttribute('name')}}</td>
-                        <td>{{$category->getRelationValue('category')->getAttribute('name')}}</td>
+                        <td>{{$category->categories->get('name')}}</td>
                         <td>{{$category->getAttribute('description')}}</td>
                         <td>{{$category->getAttribute('keyword')}}</td>
                         <td>@if ($category->getAttribute('is_active') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
@@ -127,6 +127,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="category_id">@lang('admin.columns.parent-category')</label>
                                         <select name="category_id" id="category_id" class="form-select">
+                                            <option value="">@lang('admin.columns.parent-category')</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->getAttribute('id')}}">
                                                     {{$category->getAttribute('name')}}

@@ -44,24 +44,25 @@
             <div class="vertical-menu">
                 <div class="vertical-category">
                     <div class="vertical-menu-heading"><span class="menu-icon">&nbsp;</span> <span
-                            class="vertical-heading-text">Kategoriyalar <i class="fa fa-angle-down"></i></span>
+                            class="vertical-heading-text">@lang('website.general.categories') <i class="fa fa-angle-down"></i></span>
                     </div>
                     <div class="vertical-content">
                         <ul id="nav-one" class="dropmenu top-vertical-category">
-
-                            <li class="menu_item"><a href="indexb152.html?route=product/category&amp;path=17">Sparking cable</a></li>
-                            <li class="menu_item dropdown">
-                                <a href="index7fa3.html?route=product/category&amp;path=18">Bumper</a>
-                                <div class="dropdown-menu megamenu column1">
-                                    <div class="dropdown-inner">
-                                        <ul class="subchilds_1 list-unstyled">
-                                            <li><a href="index9f41.html?route=product/category&amp;path=18_46">Macs</a></li>
-                                            <li><a href="index8470.html?route=product/category&amp;path=18_45">Windows</a></li>
-                                        </ul>
+                            @php($categories = \App\Models\Category::active()->whereNull('category_id')->get())
+                                @foreach($categories as $cat)
+                                <li class="menu_item @if(count($cat->categories) >> 0) dropdown @endif">
+                                    <a href="{{ route('products', $cat->id) }}">{{$cat->getAttribute('name')}}</a>
+                                    <div class="dropdown-menu megamenu column1">
+                                        <div class="dropdown-inner">
+                                            <ul class="subchilds_1 list-unstyled">
+                                                @foreach($cat->categories as $subCategory)
+                                                    <li><a href="{{ route('products', $subCategory->id ) }}">{{$subCategory->getAttribute('name')}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="menu_item"><a href="index70a9.html?route=product/category&amp;path=57">Decklid</a></li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -75,10 +76,10 @@
                             </div>
 
                             <ul class="nav navbar-nav">
-                                <li class="home menu-category"><a class="a-top-link" href="{{ route('homepage') }}">Home</a></li>
-                                <li class="menu-category"><a class="a-top-link" href="{{route('about')}}">aboutus</a></li>
-                                <li class="menu-category"><a class="a-top-link" href="{{route('contact')}}">contact us</a></li>
-                                <li class="last menu-category"><a class="a-top-link" href="{{route('blogs')}}">Latest Blogs</a></li>
+                                <li class="home menu-category"><a class="a-top-link" href="{{ route('homepage') }}">@lang('website.general.homepage')</a></li>
+                                <li class="menu-category"><a class="a-top-link" href="{{route('about')}}">@lang('website.general.about')</a></li>
+                                <li class="menu-category"><a class="a-top-link" href="{{route('contact')}}">@lang('website.general.contact')</a></li>
+                                <li class="last menu-category"><a class="a-top-link" href="{{route('blogs')}}">@lang('website.general.blogs')</a></li>
                             </ul>
                         </div>
                     </div>
@@ -93,23 +94,23 @@
                             id="cart-title">cart </span> <span id="cart-total"><span>0</span> $0.00</span></button>
                     <ul class="dropdown-menu pull-right cart-menu">
                         <li>
-                            <p class="text-center">Your shopping cart is empty!</p>
+                            <p class="text-center">@lang('website.general.cart_is_empty')</p>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="dropdown ttm_myaccount">
-                <a href="indexe223.html?route=account/account" title="My Account" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="{{ route('account') }}" title="@lang('website.general.account')" class="dropdown-toggle" data-toggle="dropdown">
                     <span>My Account</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
-                    <li><a href="index5502.html?route=account/register" title="Register">Register</a></li>
-                    <li><a href="indexe223.html?route=account/login" title="Login">Login</a></li>
-                    <li><a href="index630e.html?route=checkout/cart" title="Shopping Cart">Shopping Cart</a></li>
+                    <li><a href="{{ route('register') }}" title="Register">@lang('website.general.register')</a></li>
+                    <li><a href="{{ route('login') }}" title="Login">@lang('website.general.login')</a></li>
+                    <li><a href="{{ route('cart') }}" title="Shopping Cart">@lang('website.general.cart')</a></li>
                 </ul>
             </div>
             <div class="top_bar_wishlist">
-                <a href="indexe223.html?route=account/wishlist" id="wishlist-total" title="wishlist"><span class="wishlist">wishlist <span>0</span></span></a>
+                <a href="{{ route('wishlist') }}" id="wishlist-total" title="wishlist"><span class="wishlist">@lang('website.general.wishlist') <span>0</span></span></a>
             </div>
         </div>
     </div>

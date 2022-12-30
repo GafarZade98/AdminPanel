@@ -1,4 +1,6 @@
 @extends('website.layout')
+@section('title', trans('website.general.product'))
+
 @section('content')
     <div class="quickview-page productpage">
         <div class="quickview-container">

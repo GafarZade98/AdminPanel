@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
         return view('admin.pages.categories')->with([
             'categories' => Category::query()
-                ->with('category')
+                ->with('categories')
                 ->when($search, fn ($query) => $query
                     ->where('name', 'like', "%$search%")
                     ->orWhere('keyword', 'like', "%$search%")

@@ -1,5 +1,5 @@
 @extends('website.layout')
-@section('title', 'Homepage')
+@section('title', trans('website.general.homepage'))
 @section('content')
     <x-banner></x-banner>
 

@@ -4987,16 +4987,16 @@ footer {
 	content: '\f099';
 }
 
-.rss a:before {
-	content: '\f09e';
+.instagram a:before {
+	content: '\f16d';
 }
 
 .youtube a:before {
 	content: "\f16a";
 }
 
-.google-plus a:before {
-	content: '\f0d5';
+.telegram a:before {
+	content: '\f2c6';
 }
 
 .pinterest a:before {
@@ -5007,9 +5007,6 @@ footer {
 	content: '\f27d';
 }
 
-.instagram a:before {
-	content: '\f16d ';
-}
 
 .footer-top-right {
 	background-color: #FBB71C;

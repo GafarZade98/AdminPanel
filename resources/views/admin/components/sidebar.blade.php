@@ -74,6 +74,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('partners.index')) collapsed @endif"
+               href="{{ route('partners.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.partners')</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link @if(request()->url() !== route('categories.index')) collapsed @endif"
                href="{{ route('categories.index') }}">
                 <i class="bi bi-person"></i>

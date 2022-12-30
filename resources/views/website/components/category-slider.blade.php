@@ -9,7 +9,7 @@
                     <div class="ttmcat-slider">
                         <div class="content">
                             <div class="image">
-                                <a href="">
+                                <a href="{{ route('products', $category->id )}}">
                                     <img src="{{image($category->getAttribute('image'))}}" alt="category" class="img-responsive"/>
                                 </a>
                             </div>

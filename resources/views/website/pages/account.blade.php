@@ -1,6 +1,6 @@
 @extends('website.layout')
-@section('title', trans('website.general.blog'))
+@section('title', trans('website.general.account'))
 
 @section('content')
-    Blog
+account
 @endsection

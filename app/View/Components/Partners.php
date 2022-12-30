@@ -2,25 +2,18 @@
 
 namespace App\View\Components;
 
+use App\Models\Partner;
 use Illuminate\View\Component;
 
 class Partners extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
+    public $partners;
+
     public function __construct()
     {
-        //
+        $this->partners = Partner::active()->orderBy('ordering')->get();
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
     public function render()
     {
         return view('website.components.partners');

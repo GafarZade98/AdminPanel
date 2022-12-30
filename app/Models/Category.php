@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\{Factories\HasFactory, Model, Relations\HasMany, SoftDeletes};
 
 class Category extends Model
 {
@@ -12,9 +10,9 @@ class Category extends Model
 
     protected $fillable = ['category_id', 'name', 'image', 'keyword', 'description', 'is_active'];
 
-    public function category()
+    public function categories(): HasMany
     {
-      return $this->belongsTo(self::class)->withDefault();
+      return $this->hasMany(__CLASS__,'category_id');
     }
 
     public function scopeActive($query)

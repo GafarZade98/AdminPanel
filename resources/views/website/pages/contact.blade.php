@@ -1,17 +1,14 @@
 @extends('website.layout')
 
+@section('title', trans('website.general.contact'))
 @section('content')
 <div id="information-contact">
     <ul class="breadcrumb">
-        <li><a href="index9328.html?route=common/home"><i class="fa fa-home"></i></a></li>
-        <li><a href="index2724.html?route=information/contact">How can we help you?</a></li>
+        <li><a href="{{ route('homepage') }}"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ route('contact') }}">@lang('website.general.contact')</a></li>
     </ul>
     <div class="">
         <div id="content" class="col-sm-12">
-            <div class="container">
-                <h2 class="page-title">How can we help you?</h2>
-            </div>
-
             <div class="panel panel-default col-lg-12 col-md-12">
                 <div class="container">
                     <div class="panel-body">
@@ -19,20 +16,19 @@
                             <legend>Our Location</legend>
                             <div class="left">
 
-                                <div class="address-detail"><i class="fa fa-map-marker"></i><strong>Autovio</strong>
-                                    <address>No: 58 A, United State
-                                    </address>
+                                <div class="address-detail"><i class="fa fa-map-marker"></i><strong>{{config('app.name')}}</strong>
+                                    <address>{{setting('address')}}</address>
 
                                 </div>
                                 <div class="telephone">
                                     <i class="fa fa-phone"></i>
-                                    <strong>Telephone </strong>
-                                    <address>+123-456-7890</address>
+                                    <strong>@lang('website.general.phone') </strong>
+                                    <address>{{setting('phone')}}</address>
                                 </div>
                                 <div class="fax">
-                                    <i class="fa fa-fax"></i>
-                                    <strong>Fax </strong>
-                                    <address>123456789</address>
+                                    <i class="fa fa-instagram"></i>
+                                    <strong>Instagram </strong>
+                                    <address>{{setting('instagram')}}</address>
                                 </div>
                             </div>
                         </div>
@@ -44,22 +40,22 @@
 
                         <div class="contact_form col-lg-6 col-md-12">
                             <form
-                                action="http://themetechmount.net/opencart/autovio-layout2/index.php?route=information/contact"
+                                action=""
                                 method="post" enctype="multipart/form-data" class="form-horizontal col-lg-12 col-md-12">
                                 <fieldset>
                                     <div class="form-group required">
-                                        <label class="col-sm-12 control-label" for="input-name">Your Name</label>
+                                        <label class="col-sm-12 control-label" for="input-name">@lang('admin.placeholders.name')</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="name" value="" id="input-name" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="form-group required">
-                                        <label class="col-sm-12 control-label" for="input-email">E-Mail Address</label>
+                                        <label class="col-sm-12 control-label" for="input-email">@lang('admin.placeholders.email')</label>
                                         <div class="col-sm-12">
                                             <input type="text" name="email" value="" id="input-email" class="form-control"/></div>
                                     </div>
                                     <div class="form-group required">
-                                        <label class="col-sm-12 control-label" for="input-enquiry">Enquiry</label>
+                                        <label class="col-sm-12 control-label" for="input-enquiry">@lang('admin.placeholders.description')</label>
                                         <div class="col-sm-12">
                                             <textarea name="enquiry" rows="10" id="input-enquiry"
                                                       class="form-control"></textarea></div>
@@ -67,15 +63,14 @@
                                 </fieldset>
                                 <div class="buttons">
                                     <div class="pull-right">
-                                        <input class="btn btn-primary" type="submit" value="Submit"/>
+                                        <input class="btn btn-primary" type="submit" value="@lang('admin.buttons.save')"/>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="map col-lg-6 col-md-12">
-                            <div id="wrapper-Googlemap">
-                                    map
-                            </div>
+                                <iframe src="{{setting('location')}}" width="650" height="475" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
                         </div>
 
                     </div>
