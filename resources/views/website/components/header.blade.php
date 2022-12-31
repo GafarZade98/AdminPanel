@@ -104,9 +104,17 @@
                     <span>My Account</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
-                    <li><a href="{{ route('register') }}" title="Register">@lang('website.general.register')</a></li>
-                    <li><a href="{{ route('login') }}" title="Login">@lang('website.general.login')</a></li>
-                    <li><a href="{{ route('cart') }}" title="Shopping Cart">@lang('website.general.cart')</a></li>
+
+                    @if(!Auth::check())
+                        <li><a href="{{ route('user-login') }}" title="Login">@lang('website.general.login')</a></li>
+                        <li><a href="{{ route('register') }}" title="Register">@lang('website.general.register')</a></li>
+                    @else
+                        <li><a href="{{ route('cart') }}" title="Shopping Cart">@lang('website.general.cart')</a></li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        <li><button class="btn" type="submit" title="LogOut">@lang('website.general.logout')</button></li>
+                        </form>
+                    @endif
                 </ul>
             </div>
             <div class="top_bar_wishlist">

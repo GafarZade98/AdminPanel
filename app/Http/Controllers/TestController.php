@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\{Http\RedirectResponse, Http\Request};
+use Illuminate\{Http\RedirectResponse, Http\Request, Support\Facades\Auth};
 use App\{Http\Requests\TestRequest, Models\Category, Models\Product, Models\Test};
 
 class TestController extends Controller
@@ -66,6 +66,19 @@ class TestController extends Controller
     public function login(Request $request)
     {
         return view('website.components.login');
+    }
+    public function userLogin(Request $request)
+    {
+        $request->flash();
+
+
+        $credentials = $request->only('email', 'password');
+        $remember_me = $request->has('remember_me') ? true : false;
+
+        if (Auth::attempt($credentials, $remember_me)) {
+            return redirect()->intended(route('homepage'));
+        }
+        return back()->with('error', 'Hatalı Kullanıcı');
     }
 
     public function register(Request $request)

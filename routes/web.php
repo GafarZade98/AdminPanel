@@ -22,7 +22,7 @@ Route::any('/', static function () {
 
 Auth::routes();
 
-Route::prefix('admin')->group(function (){
+Route::prefix('admin')->middleware('admin')->group(function (){
     Route::get('home', [HomeController::class, 'index'])->name('index');
     Route::controller(AccountController::class)->prefix('account')->group(function (){
         Route::get('/', 'index')->name('account.index');
@@ -42,11 +42,16 @@ Route::prefix('admin')->group(function (){
     Route::resource('/partners', PartnerController::class)->except(['create', 'edit', 'show']);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('wishlist', [TestController::class, 'wishlist'])->name('wishlist');
+    Route::get('account', [TestController::class, 'account'])->name('account');
+    Route::get('cart', [TestController::class, 'cart'])->name('cart');
+});
 Route::get('homepage', [TestController::class, 'homepage'])->name('homepage');
 Route::get('product/{name}', [TestController::class, 'product'])->name('product');
 Route::get('products/{slug}', [TestController::class, 'products'])->name('products');
 Route::get('products', [TestController::class, 'allProducts'])->name('all-products');
-Route::get('login', [TestController::class, 'login'])->name('login');
+Route::get('user-login', [TestController::class, 'login'])->name('user-login');
 Route::get('register', [TestController::class, 'register'])->name('register');
 Route::get('about', [TestController::class, 'about'])->name('about');
 Route::get('contact', [TestController::class, 'contact'])->name('contact');
@@ -55,9 +60,6 @@ Route::get('blog', [TestController::class, 'blog'])->name('blog');
 Route::get('privacy', [TestController::class, 'privacy'])->name('privacy');
 Route::get('terms', [TestController::class, 'terms'])->name('terms');
 Route::get('contract', [TestController::class, 'contract'])->name('contract');
-Route::get('account', [TestController::class, 'account'])->name('account');
-Route::get('wishlist', [TestController::class, 'wishlist'])->name('wishlist');
-Route::get('cart', [TestController::class, 'cart'])->name('cart');
 Route::get('partners', [TestController::class, 'partners'])->name('partners');
 
 Route::get('file-export', [UserController::class, 'userExport'])->name('file-export');
