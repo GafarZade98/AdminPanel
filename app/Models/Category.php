@@ -8,7 +8,7 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['category_id', 'name', 'image', 'keyword', 'description', 'is_active'];
+    protected $fillable = ['category_id', 'name', 'image', 'keyword', 'slug', 'description', 'is_active'];
 
     public function categories(): HasMany
     {

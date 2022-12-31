@@ -43,8 +43,9 @@ Route::prefix('admin')->group(function (){
 });
 
 Route::get('homepage', [TestController::class, 'homepage'])->name('homepage');
-Route::get('product', [TestController::class, 'product'])->name('product');
-Route::get('products/{category_id}', [TestController::class, 'products'])->name('products');
+Route::get('product/{name}', [TestController::class, 'product'])->name('product');
+Route::get('products/{slug}', [TestController::class, 'products'])->name('products');
+Route::get('products', [TestController::class, 'allProducts'])->name('all-products');
 Route::get('login', [TestController::class, 'login'])->name('login');
 Route::get('register', [TestController::class, 'register'])->name('register');
 Route::get('about', [TestController::class, 'about'])->name('about');

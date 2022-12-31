@@ -62,7 +62,9 @@
                         <th>{{$loop->iteration}}</th>
                         <td><img src="{{image($category->getAttribute('image'))}}" width="75" alt=""></td>
                         <td>{{$category->getAttribute('name')}}</td>
-                        <td>{{$category->categories->get('name')}}</td>
+                        @foreach($category->categories as $cat)
+                            <td>{{$cat->getAttribute('name')}}</td>
+                        @endforeach
                         <td>{{$category->getAttribute('description')}}</td>
                         <td>{{$category->getAttribute('keyword')}}</td>
                         <td>@if ($category->getAttribute('is_active') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>

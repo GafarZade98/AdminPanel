@@ -25,7 +25,6 @@
                                 </div>
                             </ul>
                         </div>
-
                     </div>
                     <div class="col-sm-3 column second">
                         <h5>@lang('website.general.info')</h5>
@@ -55,15 +54,12 @@
                             <ul id="foote_contact_list">
                                 <li>
                                     <div class="data">
-                                        <span class="contact_title"><span>@lang('website.general.address'):
-                                        </span>{{setting('address')}}</span>
+                                        <span class="contact_title"><span>@lang('website.general.address'):</span>{{setting('address')}}</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="data">
-                                        <span class="contact_title"><span>@lang('website.general.phone'): </span>
-                                            {{setting('phone')}}
-                                        </span>
+                                        <span class="contact_title"><span>@lang('website.general.phone'): </span>{{setting('phone')}}</span>
                                     </div>
                                 </li>
                                 <li>
@@ -73,14 +69,11 @@
                                 </li>
                                 <li>
                                     <div class="data">
-                                            <span class="contact_title"><span>Email: </span><a
-                                                    href="#">{{setting('email')}}</a></span>
+                                        <span class="contact_title"><span>Email: </span><a href="#">{{setting('email')}}</a></span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -130,7 +123,6 @@
 {{--                        </ul>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
-
             </div>
         </div>
     </div>

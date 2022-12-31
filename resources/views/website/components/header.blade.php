@@ -51,12 +51,12 @@
                             @php($categories = \App\Models\Category::active()->whereNull('category_id')->get())
                                 @foreach($categories as $cat)
                                 <li class="menu_item @if(count($cat->categories) >> 0) dropdown @endif">
-                                    <a href="{{ route('products', $cat->id) }}">{{$cat->getAttribute('name')}}</a>
+                                    <a href="{{ route('products', $cat->getAttribute('slug')) }}">{{$cat->getAttribute('name')}}</a>
                                     <div class="dropdown-menu megamenu column1">
                                         <div class="dropdown-inner">
                                             <ul class="subchilds_1 list-unstyled">
                                                 @foreach($cat->categories as $subCategory)
-                                                    <li><a href="{{ route('products', $subCategory->id ) }}">{{$subCategory->getAttribute('name')}}</a></li>
+                                                    <li><a href="{{ route('products', $subCategory->getAttribute('slug')) }}">{{$subCategory->getAttribute('name')}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>

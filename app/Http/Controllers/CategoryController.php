@@ -23,7 +23,6 @@ class CategoryController extends Controller
 
         return view('admin.pages.categories')->with([
             'categories' => Category::query()
-                ->with('categories')
                 ->when($search, fn ($query) => $query
                     ->where('name', 'like', "%$search%")
                     ->orWhere('keyword', 'like', "%$search%")
@@ -36,6 +35,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $validated['is_active'] = $request->has('is_active');
+        $validated['slug'] = preg_replace('/[^A-Za-z0-9-]+/', '-', $request->get('name'));
         if ($request->file('image')) {
 
             $image_value = $request->file('image');
@@ -50,6 +50,8 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
         $validated['is_active'] = $request->has('is_active');
+        $validated['slug'] = preg_replace('/[^A-Za-z0-9-]+/', '-', $request->get('name'));
+
         if ($request->file('image')) {
 
             $image_value = $request->file('image');

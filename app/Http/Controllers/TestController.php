@@ -3,31 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\{Http\RedirectResponse, Http\Request};
-use App\{Http\Requests\TestRequest, Models\Product, Models\Test};
+use App\{Http\Requests\TestRequest, Models\Category, Models\Product, Models\Test};
 
 class TestController extends Controller
 
 {
-    public function products(Request $request, $category_id)
+    public function products(Request $request, $slug)
     {
-        $category = $request->get('category_id');
-        $products = Product::active()
-            ->when($category,function ($query) use ($category)
-        {
-            $query->where('category_id', $category);
-        })->when($category_id,function ($query) use ($category_id)
-        {
-            $query->where('category_id', $category_id);
+        $categoryFilter = $request->get('category_id');
+        $size = $request->get('size');
+        $color = $request->get('color');
+        $price = $request->get('price');
+        $search = $request->get('search');
+        $limit = $request->get('limit', 1);
+
+        $category = Category::where('slug', $slug)->first();
+
+        $products = Product::active()->when($categoryFilter, function ($query) use ($categoryFilter) {
+            $query->where('category_id', $categoryFilter);
+        })->when($slug, function ($query) use ($category) {
+            $query->where('category_id', $category->id);
         }
-        )->get();
+        )->paginate($limit);
+//        ->where('name', 'like', "%$search")
+//        ->orWhere('keyword', 'like', "%$search%")
+//        ->orWhere('description', 'like', "%$search%")
+
         return view('website.pages.products')->with([
-            'products' => $products
+            'products' => $products,
+            'categories' => Category::active()->whereNull('category_id')->get()
         ]);
     }
 
-    public function product(Request $request)
+    public function product(Request $request ,$name)
     {
         return view('website.pages.product');
+    }
+
+    public function allProducts()
+    {
+        return view('website.pages.products')->with([
+            'products' => Product::active()->paginate(12),
+            'categories' => Category::active()->whereNull('category_id')->get()
+        ]);
     }
 
     public function about(Request $request)

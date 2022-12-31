@@ -24,7 +24,7 @@
                                     <div class="product-block product-thumb">
                                         <div class="product-thumb-inner">
                                             <div class="image"><a
-                                                    href="{{route('product')}}">
+                                                    href="{{route('product', $product->getAttribute('code'))}}">
                                                     <img style="width: 225px; height: 225px"
                                                         src="{{image($product->getAttribute('image'))}}"
                                                         title="adipiscing mollitelit ipsum"
