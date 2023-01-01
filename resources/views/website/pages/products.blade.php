@@ -2,225 +2,239 @@
 @section('title', trans('website.general.products'))
 
 @section('content')
-    <div class="ttm-breadcrumb" id="breadcrumb">
-        <div class="container">
 
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Shop</p>
+            </div>
         </div>
     </div>
-    <div class="categorypage">
-        <div id="product-category" class="container">
-            <ul class="breadcrumb">
-                <li><a href="{{ route('homepage') }}"><i class="fa fa-home"></i></a></li>
-                <li><a href="{{ route('all-products') }}">@lang('website.general.products')</a></li>
-            </ul>
-            <div class="row">
-                <aside id="column-left" class="col-sm-3 hidden-xs">
-                    <div class="box">
-                        <div class="heading-title">
-                            <div class="sidebar-heading">Categories</div>
-                        </div>
-                        <div class="ttm-content-box">
-                            <ul class="box-category treeview-list treeview">
+    <!-- Page Header End -->
 
-                                @foreach($categories as $cat)
-                                    <li>
-                                        <a href="{{ route('products', $cat->getAttribute('slug')) }}" class="active"> {{$cat->getAttribute('name')}}</a>
-                                        @if(count($cat->categories) >> 0)
-                                        <ul>@foreach($cat->categories as $subCategory)
-                                            <li><a href="{{ route('products', $subCategory->getAttribute('slug')) }}">{{$subCategory->getAttribute('name')}}</a></li>
-                                            @endforeach
-                                        </ul>
-                                            @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="box sidebarFilter">
-                        <div class="heading-title">
-                            <div class="sidebar-heading">Filter</div>
-                        </div>
-                        <div class="filterbox">
-                            <div class="list-group">
-                                <div class="list-group-items">
-                                    <a class="list-group-item">Colors</a>
 
-                                    <div class="list-group-item">
-                                        <div id="filter-group1">
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="4"/>Red</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="3"/>Black</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="2"/>Green</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="1"/>Blue</label>
-                                            </div>
-                                        </div>
+    <!-- Shop Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-12">
+                <!-- Price Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked id="price-all">
+                            <label class="custom-control-label" for="price-all">All Price</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-1">
+                            <label class="custom-control-label" for="price-1">$0 - $100</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-2">
+                            <label class="custom-control-label" for="price-2">$100 - $200</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-3">
+                            <label class="custom-control-label" for="price-3">$200 - $300</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-4">
+                            <label class="custom-control-label" for="price-4">$300 - $400</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="price-5">
+                            <label class="custom-control-label" for="price-5">$400 - $500</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Price End -->
+
+                <!-- Color Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked id="color-all">
+                            <label class="custom-control-label" for="price-all">All Color</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-1">
+                            <label class="custom-control-label" for="color-1">Black</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-2">
+                            <label class="custom-control-label" for="color-2">White</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-3">
+                            <label class="custom-control-label" for="color-3">Red</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-4">
+                            <label class="custom-control-label" for="color-4">Blue</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="color-5">
+                            <label class="custom-control-label" for="color-5">Green</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Color End -->
+
+                <!-- Size Start -->
+                <div class="mb-5">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked id="size-all">
+                            <label class="custom-control-label" for="size-all">All Size</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-1">
+                            <label class="custom-control-label" for="size-1">XS</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-2">
+                            <label class="custom-control-label" for="size-2">S</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-3">
+                            <label class="custom-control-label" for="size-3">M</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-4">
+                            <label class="custom-control-label" for="size-4">L</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="size-5">
+                            <label class="custom-control-label" for="size-5">XL</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Size End -->
+            </div>
+            <!-- Shop Sidebar End -->
+
+
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-12">
+                <div class="row pb-3">
+                    <div class="col-12 pb-1">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search by name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent text-primary">
+                                            <i class="fa fa-search"></i>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="list-group-items">
-                                    <a class="list-group-item">Size</a>
+                            </form>
+                            <div class="dropdown ml-4">
+                                <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Sort by
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+{{--                                    <select id="input-sort" name="sort" class="form-control">--}}
+{{--                                        <option @if(request()->get('sort') == 'id') selected @endif value="id">--}}
+{{--                                            Default--}}
+{{--                                        </option>--}}
+{{--                                        <option value="name" @if(request()->get('sort') == 'name') selected @endif>--}}
+{{--                                            Name (A - Z)--}}
+{{--                                        </option>--}}
+{{--                                        <option value="price"--}}
+{{--                                                @if(request()->get('sort') == 'price') selected @endif>Price (Low--}}
+{{--                                            &gt; High)--}}
+{{--                                        </option>--}}
+{{--                                    </select>--}}
 
-                                    <div class="list-group-item">
-                                        <div id="filter-group4">
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="16"/>M</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="15"/>L</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="14"/>XL</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="13"/>XXL</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-items">
-                                    <a class="list-group-item">Price</a>
-
-                                    <div class="list-group-item">
-                                        <div id="filter-group3">
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="9"/>$30.00 -
-                                                    $200.00 </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="10"/>$201.00 -
-                                                    $500.00 </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="11"/>$501.00 -
-                                                    $800.00</label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label> <input type="checkbox" name="filter[]" value="12"/>$801.00 -
-                                                    $3000.00</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-footer text-right">
-                                    <button type="button" id="button-filter" class="btn btn-primary">@lang('website.general.filter')
-                                    </button>
+                                    <a class="dropdown-item" href="#">Latest</a>
+                                    <a class="dropdown-item" href="#">Popularity</a>
+                                    <a class="dropdown-item" href="#">Best Rating</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                </aside>
-                <div id="content" class="col-sm-9 categorypage">
-                    <h2 class="page-title"> @lang('website.general.products')</h2>
-                    <div class="row category_thumb">
-                    <div class="category_filter">
-                        <div class="col-md-4 btn-list-grid">
-                            <div class="btn-group">
-                                <button type="button" data-toggle="tooltip" data-placement="top" id="grid-view"
-                                        class="btn btn-default grid" title="Grid"><i class="fa fa-th"></i></button>
-                                <button type="button" data-toggle="tooltip" data-placement="top" id="list-view"
-                                        class="btn btn-default list" title="List"><i class="fa fa-th-list"></i></button>
-                            </div>
-                        </div>
-
-                        <div class="pagination-right">
-                            <div class="sort-by-wrapper">
-                                <div class="col-md-2 text-right sort-by">
-                                    <label class="control-label" for="input-sort">Sort By:</label>
-                                </div>
-                                <div class="col-md-3 text-right sort">
-                                    <select id="input-sort" name="sort" class="form-control">
-                                        <option  @if(request()->get('sort') == 'id') selected @endif value="id">Default</option>
-                                        <option value="name" @if(request()->get('sort') == 'name') selected @endif>Name (A - Z)</option>
-                                        <option value="price" @if(request()->get('sort') == 'price') selected @endif>Price (Low &gt; High)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="show-wrapper">
-                                <div class="col-md-1 text-right show">
-                                    <label class="control-label" for="input-limit">Show:</label>
-                                </div>
-                                <div class="col-md-2 text-right limit">
-                                    <select name="limit" id="input-limit" class="form-control">
-                                        @foreach([25, 50, 100, 250] as $size)
-                                            <option @if(request()->get('limit') == $size) selected @endif value="{{$size}}">{{$size}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-image-inner">
-                        <div class="row">
                     @foreach($products as $product)
 
-                            <div class="product-layout product-list col-xs-12">
-                                <div class="product-block product-thumb">
-                                    <div class="product-thumb-inner">
-                                        <div class="image"><a
-                                                href="{{ route('product', $product->getAttribute('name')) }}">
-                                                <img src="{{image($product->getAttribute('image'))}}"
-                                                     title="musical dolor reprehenderit" alt="musical dolor reprehenderit"
-                                                     class="img-responsive reg-image"/>
-                                                <img class="img-responsive hover-image"
-                                                     src="{{image($product->getAttribute('image'))}}"
-                                                     title="musical dolor reprehenderit" alt="musical dolor reprehenderit"/>
-                                            </a>
-                                        </div>
-                                        <div class="product-details">
-                                            <div class="caption">
-                                                <div class="category">{{$product->getRelationValue('category')->getAttribute('name')}}</div>
-                                                <h4>
-                                                    <a href="{{ route('product', $product->getAttribute('name')) }}">{{$product->getAttribute('name')}}</a>
-                                                </h4>
-                                                <p class="price">{{$product->getAttribute('price')}} AZN
-                                                    <span class="price-tax">
-                                                        Ex Tax:{{$product->getAttribute('tax')}} AZN
-                                                    </span>
-                                                </p>
-
-                                                <div class="button-group">
-                                                    <button type="button" data-toggle="tooltip" data-placement="top" class="addtocart" title="Add to Cart"><span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                                    </button>
-                                                    <button class="wishlist" data-toggle="tooltip" data-placement="top" type="button" title="Add to Wish List"></button>
-                                                </div>
-
-                                                <p class="desc">
-                                                    @if (strlen($product->getAttribute('description')) > 240)
-                                                        {!!substr($product->getAttribute('description'), 0, 240) . '...'!!}
-                                                    @else
-                                                        {{$product->getAttribute('description')}}
-                                                    @endif
-                                                </p>
-                                                <div class="btn-wish-compare">
-                                                    <div class="button-group">
-                                                        <button type="button" data-placement="left" title="Add to Cart" class="addtocart">Add to Cart</button>
-                                                        <button class="wishlist" type="button" data-placement="left" title="Add to Wish List"></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src=" {{image($product->getAttribute('image'))}}" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3"> {{$product->getAttribute('name')}}</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>{{$product->getAttribute('price')}}</h6><h6 class="text-muted ml-2"><del>{{$product->getAttribute('price')*1.10}} AZN</del></h6>
                                 </div>
                             </div>
-                            @endforeach
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a href="{{ route('product', $product->getAttribute('code')) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 text-left  page-result">Showing {{ $products->count()}} of {{is_numeric(request()->get('limit')) ? $products->total() : $products->count()}} </div>
-{{--                        @lang('translates.total_items', ['count' => $products->count(), 'total' => is_numeric($filters['limit']) ? $works->total() : $works->count()])--}}
-                    <div class="col-sm-6 text-right page-link">
-                            {{$products->appends(request()->input())->links()}}
-                    </div>
+                    @endforeach
 
+                    <div class="col-12 pb-1">
+                        {{$products->appends(request()->input())->links()}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
+
+
+
+{{--{{ route('products', $cat->getAttribute('slug')) }}--}}
+{{--@foreach($categories as $cat)--}}
+{{--    <li>--}}
+{{--        <a href=""--}}
+{{--           class="active"> {{$cat->getAttribute('name')}}</a>--}}
+{{--        @if(count($cat->categories) >> 0)--}}
+{{--            <ul>@foreach($cat->categories as $subCategory)--}}
+{{--                    <li>--}}
+{{--                        <a href="{{ route('products', $subCategory->getAttribute('slug')) }}">{{$subCategory->getAttribute('name')}}</a>--}}
+{{--                    </li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        @endif--}}
+{{--    </li>--}}
+{{--@endforeach--}}
+{{--{{$product->getRelationValue('category')->getAttribute('name')}}--}}
+
+
+{{--@foreach([25, 50, 100, 250] as $size)--}}
+{{--    <option @if(request()->get('limit') == $size) selected--}}
+{{--            @endif value="{{$size}}">{{$size}}</option>--}}
+{{--@endforeach--}}
+
+
+

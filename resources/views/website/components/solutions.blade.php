@@ -1,24 +1,17 @@
-<div id="ttm_bannercms">
-    <div class="container">
-        <div class="bannercms">
-            <ul class="bannercms-wrapper">
-
-                @foreach($solutions as $solution)
-                    @php($numbers = [1 => 'first', 'second', 'third', 'forth'])
-                    <li class="bannercms_content {{$numbers[$loop->iteration]}} col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="bannercms_item">
-                            <a href="#" class="img"><img src="{{image($solution->getAttribute('image'))}}" height="300" width="700" alt=""></a>
-                            <div class="bannertext">
-                                <span class="bannertext1">{{$solution->getAttribute('title')}}t</span>
-                                <span class="bannertext2">{{$solution->getAttribute('description')}}</span>
-
-                                <a class="bannerbtn" href="{{$solution->getAttribute('link')}}">shop now <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                @endforeach
-
-            </ul>
-        </div>
+<div class="container-fluid offer pt-5">
+    <div class="row px-xl-5">
+        @foreach($solutions as $solution)
+            @php($numbers = [1 => 'right', 'left'])
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-{{$numbers[$loop->iteration]}} text-white mb-2 py-5 px-5">
+                    <img src="{{image($solution->getAttribute('image'))}}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 class="text-uppercase text-primary mb-3">{{$solution->getAttribute('description')}}</h5>
+                        <h1 class="mb-4 font-weight-semi-bold">{{$solution->getAttribute('title')}}</h1>
+                        <a href="{{$solution->getAttribute('link')}}" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>

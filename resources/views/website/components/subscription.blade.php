@@ -1,26 +1,18 @@
-<div class="ttm-newsletter">
-    <div class="container">
-        <div class="newsletter-inner">
-            <div class="newsletter-details">
-                <div class="newsletter-title">@lang('website.general.subscription_title')</div>
-                <div class="desc">@lang('website.general.subscription_body')
-                </div>
+<div class="container-fluid bg-secondary my-5">
+    <div class="row justify-content-md-center py-5 px-xl-5">
+        <div class="col-md-6 col-12 py-5">
+            <div class="text-center mb-2 pb-2">
+                <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">@lang('website.general.subscription_title')</span></h2>
+                <p>@lang('website.general.subscription_body')</p>
             </div>
-            <div class="newsletter-wrapper">
-                <form method="post">
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="txtemail">@lang('website.general.subscription_mail')</label>
-                        <div class="news-content">
-                            <input type="email" name="email" id="txtemail" placeholder="@lang('website.general.subscription_mail')" class="form-control input-lg"/>
-                        </div>
-                        <div class="subscribe_button">
-                            <button type="submit" class="btn btn-default btn-lg">@lang('website.general.subscribe')
-                            </button>
-                        </div>
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-white p-4" placeholder="@lang('admin.placeholders.email')">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary px-4">@lang('website.general.subscribe')</button>
                     </div>
-                </form>
-            </div>
-
+                </div>
+            </form>
         </div>
     </div>
 </div>

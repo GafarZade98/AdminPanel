@@ -118,7 +118,10 @@ class TestController extends Controller
 
     public function wishlist(Request $request)
     {
-        return view('website.pages.wishlist');
+        return view('website.pages.wishlist')->with([
+            'products' => Product::active()->paginate(12),
+            'categories' => Category::active()->whereNull('category_id')->get()
+        ]);
     }
 
     public function cart(Request $request)

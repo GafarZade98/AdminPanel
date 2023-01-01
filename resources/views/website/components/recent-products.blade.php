@@ -1,40 +1,32 @@
-<div class="featured box product-box">
-    <div class="container">
-        <div class="heading-title">
-            <div class="main-heading">@lang('website.general.new_products')</div>
-        </div>
-        <div class="ttm-content-box">
-            <div class="featured-products home-products">
-                <div class="ttm-product-box product_carousel" id=" featured-carousel">
-                    @foreach($recentProducts as $product)
-                        <div class=" product-slider">
-                            <div class="product-block product-thumb">
-                                <div class="product-thumb-inner">
-                                    <div class="image">
-                                        <a href="{{route('product', $product->getAttribute('code'))}}">
-                                            <img src="{{image($product->getAttribute('image'))}}" title="Riding Pants" alt="Riding Pants" class="img-responsive reg-image"/>
-                                            <img class="img-responsive hover-image" src="{{image($product->getAttribute('image'))}}" title="Riding Pants" alt="Riding Pants"/>
-                                        </a>
-                                        <div class="label_new"><span>yeni</span></div>
-                                    </div>
-                                    <div class="caption">
-                                        <div class="category">{{$product->getRelationValue('category')->getAttribute('name')}}</div>
-                                        <h4><a href="{{ route('product',$product->getAttribute('code')) }}" title="Riding Pants">{{$product->getAttribute('name')}}</a></h4>
-                                        <p class="price">{{$product->getAttribute('price')}} <span class="price-tax">{{$product->getAttribute('tax')}}</span></p>
-
-                                        <div class="button-group">
-                                            <button type="button" data-toggle="tooltip" data-placement="top" class="addtocart" title="Add to Cart">
-                                                <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span>
-                                            </button>
-                                            <button class="wishlist" data-toggle="tooltip" data-placement="top" type="button" title="Add to Wish List "></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">@lang('website.general.new_products')</span></h2>
+    </div>
+    <div class="row px-xl-5 pb-3">
+        @foreach($recentProducts as $product)
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="{{image($product->getAttribute('image'))}}" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">{{$product->getAttribute('name')}}</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>{{$product->getAttribute('price')}}</h6>
+                            <h6 class="text-muted ml-2">
+                                <del>{{$product->getAttribute('price')*1.10}}</del>
+                            </h6>
                         </div>
-                    @endforeach
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="{{route('product', $product->getAttribute('code'))}}" class="btn btn-sm text-dark p-0"><i
+                                class="fas fa-eye text-primary mr-1"></i>@lang('website.general.view')</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i
+                                class="fas fa-shopping-cart text-primary mr-1"></i>@lang('website.general.add_to_cart')
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 </div>

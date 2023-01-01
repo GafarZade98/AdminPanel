@@ -1,13 +1,15 @@
-<div id="carousel-0" class="brand-banners-slider">
-    <div class="container">
-        <div class="brand_carousel" id="brand-0-carousel">
-            @foreach($partners as $partner)
-                <div class="brand-slider">
-                    <div class="product-thumb-inner">
-                        <a href="#"><img src="{{image($partner->getAttribute('image'))}}" alt="carousel1"/></a>
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel vendor-carousel">
+
+                @foreach($partners as $partner)
+                    <div class="vendor-item border p-4">
+                        <img src="{{image($partner->getAttribute('image'))}}" alt="">
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+
+            </div>
         </div>
     </div>
 </div>

@@ -1,126 +1,127 @@
-<header>
-
-    <div class="top_bar hidden-sm hidden-md hidden-lg hidden-xs">
-        <div class="container">
-            <div class="top_bar_left"></div>
-            <div class="top_bar_right"></div>
-        </div>
-    </div>
-
-    <div class="header_main">
-        <div class="container">
-
-            <div class="header-logo">
-                <div id="logo">
-                    <a href="{{route('homepage')}}">
-                        <img src="{{image(setting('logo'))}}" alt="logo" class="img-responsive"/>
-                    </a>
-                </div>
-            </div>
-
-            <div class="dropdown ttm_search">
-                <div id="search" class="input-group">
-                    <input type="text" name="search" value="" placeholder="Search here..." class="form-control input-lg"/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default btn-lg"> <span class="search_button">Search</span></button>
-                    </span>
-                </div>
-            </div>
-            <div class="ttm_contactcms">
-                <div class="ttm_contactcms_inner">
-                    <div class="text">
-                        <span class="desc"> <i class="fa fa-truck"></i> Free Shipping </span>
-                    </div>
-                    <div class="text">
-                        <a href="{{route('contact')}}" class="desc"> <i class="fa fa-headphones"></i> Need help? </a>
-                    </div>
-                </div>
+<div class="container-fluid">
+    <div class="row bg-secondary py-2 px-xl-5">
+        <div class="col-lg-6 d-none d-lg-block">
+            <div class="d-inline-flex align-items-center">
+                <a class="text-dark" href="">FAQs</a>
+                <span class="text-muted px-2">|</span>
+                <a class="text-dark" href="{{ route('terms') }}">@lang('website.general.terms')</a>
+                <span class="text-muted px-2">|</span>
+                <a class="text-dark" href="{{ route('privacy') }}">@lang('website.general.privacy')</a>
             </div>
         </div>
-    </div>
-
-    <div class="bottom_block">
-        <div class="container">
-            <div class="vertical-menu">
-                <div class="vertical-category">
-                    <div class="vertical-menu-heading"><span class="menu-icon">&nbsp;</span> <span
-                            class="vertical-heading-text">@lang('website.general.categories') <i class="fa fa-angle-down"></i></span>
-                    </div>
-                    <div class="vertical-content">
-                        <ul id="nav-one" class="dropmenu top-vertical-category">
-                            @php($categories = \App\Models\Category::active()->whereNull('category_id')->get())
-                                @foreach($categories as $cat)
-                                <li class="menu_item @if(count($cat->categories) >> 0) dropdown @endif">
-                                    <a href="{{ route('products', $cat->getAttribute('slug')) }}">{{$cat->getAttribute('name')}}</a>
-                                    <div class="dropdown-menu megamenu column1">
-                                        <div class="dropdown-inner">
-                                            <ul class="subchilds_1 list-unstyled">
-                                                @foreach($cat->categories as $subCategory)
-                                                    <li><a href="{{ route('products', $subCategory->getAttribute('slug')) }}">{{$subCategory->getAttribute('name')}}</a></li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="header-main-menu">
-                <nav class="nav-container" role="navigation">
-                    <div class="nav-inner">
-                        <div id="menu" class="header-main-menu">
-                            <div class="nav-responsive"><span>Menu</span>
-                                <div class="expandable"></div>
-                            </div>
-
-                            <ul class="nav navbar-nav">
-                                <li class="home menu-category"><a class="a-top-link" href="{{ route('homepage') }}">@lang('website.general.homepage')</a></li>
-                                <li class="menu-category"><a class="a-top-link" href="{{route('about')}}">@lang('website.general.about')</a></li>
-                                <li class="menu-category"><a class="a-top-link" href="{{route('contact')}}">@lang('website.general.contact')</a></li>
-                                <li class="last menu-category"><a class="a-top-link" href="{{route('blogs')}}">@lang('website.general.blogs')</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-
-            </div>
-
-            <div class="header-cart">
-                <div id="cart" class="btn-group btn-block">
-                    <button type="button" data-toggle="dropdown" data-loading-text="Loading..."
-                            class="btn btn-inverse btn-block btn-lg dropdown-toggle" title="Shopping Cart"><span
-                            id="cart-title">cart </span> <span id="cart-total"><span>0</span> $0.00</span></button>
-                    <ul class="dropdown-menu pull-right cart-menu">
-                        <li>
-                            <p class="text-center">@lang('website.general.cart_is_empty')</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="dropdown ttm_myaccount">
-                <a href="{{ route('account') }}" title="@lang('website.general.account')" class="dropdown-toggle" data-toggle="dropdown">
-                    <span>My Account</span>
+        <div class="col-lg-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+                <a class="text-dark px-2" href="{{setting('facebook')}}">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right myaccount-menu">
-
-                    @if(!Auth::check())
-                        <li><a href="{{ route('user-login') }}" title="Login">@lang('website.general.login')</a></li>
-                        <li><a href="{{ route('register') }}" title="Register">@lang('website.general.register')</a></li>
-                    @else
-                        <li><a href="{{ route('cart') }}" title="Shopping Cart">@lang('website.general.cart')</a></li>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        <li><button class="btn" type="submit" title="LogOut">@lang('website.general.logout')</button></li>
-                        </form>
-                    @endif
-                </ul>
-            </div>
-            <div class="top_bar_wishlist">
-                <a href="{{ route('wishlist') }}" id="wishlist-total" title="wishlist"><span class="wishlist">@lang('website.general.wishlist') <span>0</span></span></a>
+                <a class="text-dark px-2" href="{{setting('twitter')}}">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="text-dark px-2" href="{{setting('telegram')}}">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a class="text-dark px-2" href="{{setting('instagram')}}">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </div>
     </div>
+    <div class="row align-items-center py-3 px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a href="{{ route('homepage') }}" class="text-decoration-none">
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>{{config('app.name')}}</h1>
+            </a>
+        </div>
+        <div class="col-lg-6 col-6 text-left">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-6 text-right">
+            <a href="" class="btn border">
+                <i class="fas fa-heart text-primary"></i>
+                <span class="badge">0</span>
+            </a>
+            <a href="" class="btn border">
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <span class="badge">0</span>
+            </a>
+        </div>
+    </div>
+</div>
 
-</header>
+
+
+<div class="container-fluid mb-5">
+    <div class="row border-top px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <h6 class="m-0">@lang('website.general.categories')</h6>
+                <i class="fa fa-angle-down text-dark"></i>
+            </a>
+            <nav class="collapse  navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+
+                    @php($categories = \App\Models\Category::active()->whereNull('category_id')->get())
+                        <div class="nav-item dropdown">
+                            @foreach($categories as $cat)
+                                @if(count($cat->categories) > 0)
+                                    <a href="{{ route('products', $cat->getAttribute('slug')) }}" class="nav-link" data-toggle="dropdown">
+                                        {{$cat->getAttribute('name')}} <i class="fa fa-angle-down float-right mt-1"></i>
+                                    </a>
+                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                        @foreach($cat->categories as $subCategory)
+                                            <a href="{{ route('products', $subCategory->getAttribute('slug')) }}"
+                                               class="dropdown-item">{{$subCategory->getAttribute('name')}}</a>
+                                        @endforeach
+                                    </div>
+                                @endif
+                         @endforeach
+                    </div>
+                    @foreach($categories as $cat)
+                        @if(count($cat->categories) == null)
+                            <a href="{{ route('products', $cat->getAttribute('slug')) }}" class="nav-item nav-link">{{$cat->getAttribute('name')}} </a>
+                        @endif
+                    @endforeach
+                </div>
+            </nav>
+        </div>
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                <a href="" class="text-decoration-none d-block d-lg-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="{{ route('homepage') }}" class="nav-item nav-link active">@lang('website.general.homepage')</a>
+                        <a href="{{ route('all-products') }}" class="nav-item nav-link">@lang('website.general.products')</a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link">@lang('website.general.about')</a>
+                        <a href="{{ route('contact') }}" class="nav-item nav-link">@lang('website.general.contact')</a>
+
+                    </div>
+                    <div class="navbar-nav ml-auto py-0">
+{{--                        <div class="nav-item dropdown">--}}
+{{--                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>--}}
+{{--                            <div class="dropdown-menu rounded-0 m-0">--}}
+{{--                                <a href="cart.html" class="dropdown-item">Shopping Cart</a>--}}
+{{--                                <a href="checkout.html" class="dropdown-item">Checkout</a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <a href="{{ route('user-login') }}" class="nav-item nav-link">Login</a>
+                        <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

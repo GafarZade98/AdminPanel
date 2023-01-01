@@ -12,7 +12,7 @@ class Solutions extends Component
 
     public function __construct()
     {
-        $this->solutions = Solution::active()->get();
+        $this->solutions = Solution::active()->inRandomOrder(2);
     }
 
     public function render()
