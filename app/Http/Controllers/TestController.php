@@ -35,9 +35,12 @@ class TestController extends Controller
         ]);
     }
 
-    public function product(Request $request ,$name)
+    public function product(Request $request ,$code)
     {
-        return view('website.pages.product');
+        return view('website.pages.product')->with([
+            'product' => Product::where('code', $code)->first(),
+            'topProducts' => Product::active()->inRandomOrder(10)->get()
+        ]);
     }
 
     public function allProducts()
@@ -124,13 +127,8 @@ class TestController extends Controller
         ]);
     }
 
-    public function cart(Request $request)
+    public function faqs(Request $request)
     {
-        return view('website.pages.cart');
-    }
-
-    public function partners(Request $request)
-    {
-        return view('website.pages.partners');
+        return view('website.pages.faqs');
     }
 }

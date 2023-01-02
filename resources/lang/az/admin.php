@@ -31,6 +31,8 @@ return [
         'yes' => 'Bəli',
         'no' => 'Xeyr',
         'search' => 'Axtar',
+        'send' => 'Göndər',
+        'remove' => 'Sil',
     ],
 
     'fields' => [
@@ -41,6 +43,7 @@ return [
     'columns' => [
         'name' => 'Adı',
         'name_s' => 'Ad Soyad',
+        'email' => 'Email Adresi',
         'phone' => 'Telefon',
         'password' => 'Şifrə',
         'image' => 'Şəkil',
@@ -54,16 +57,26 @@ return [
         'value' => 'Dəyər',
         'type' => 'Tip',
         'status' => 'Status',
+        'price' => 'Qiymət',
+        'quantity' => 'Sayı',
+        'total_price' => 'Toplam Qiymət',
         'description' => 'Açıqlama',
         'ordering' => 'Sıralama',
         'parent-category' => 'Ana Kategoriya',
+        'features' => 'Xüsusiyyətlər',
     ],
 
     'placeholders' => [
-        'name' => 'Ad Daxil Edin...',
-        'description' => 'Açıqlama Daxil Edin...',
-        'key' => 'Açar Söz Daxil Edin...',
-        'ordering' => 'Sıra Sayı Daxil Edin...',
+        'name' => 'Ad daxil edin',
+        'name_s' => 'Ad soyad daxil edin',
+        'description' => 'Açıqlama daxil edin',
+        'key' => 'Açar söz daxil edin',
+        'ordering' => 'Sıra sayı daxil edin',
+        'email' => 'Email adresi daxil edin',
+        'password' => 'Şifrənizi daxil edin',
+        'phone' => 'Telefon nömrənizi daxil edin',
+        'password_confirm' => 'Şifrənizi təkrar daxil edin',
+        'message' => 'Mesajınızı daxil edin',
     ],
 
 ];

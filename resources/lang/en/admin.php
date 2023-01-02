@@ -31,6 +31,8 @@ return [
         'yes' => 'Yes',
         'no' => 'No',
         'search' => 'Search',
+        'send' => 'Send',
+        'remove' => 'Remove',
     ],
 
     'fields' => [
@@ -41,6 +43,7 @@ return [
     'columns' => [
         'name' => 'Name',
         'name_s' => 'Name Surname',
+        'email' => 'Email Address',
         'phone' => 'Phone',
         'password' => 'Password',
         'image' => 'Image',
@@ -54,17 +57,26 @@ return [
         'value' => 'Value',
         'type' => 'Type',
         'status' => 'Status',
+        'price' => 'Price',
+        'quantity' => 'Quantity',
+        'total_price' => 'Total Price',
         'description' => 'Description',
         'ordering' => 'Ordering',
         'parent-category' => 'Parent Category',
-
+        'features' => 'Features',
     ],
 
     'placeholders' => [
-        'name' => 'Enter Name',
-        'description' => 'Enter Description',
-        'key' => 'Enter Keyword',
-        'ordering' => 'Enter Ordering',
+        'name' => 'Enter name',
+        'name_s' => 'Enter name surname',
+        'description' => 'Enter description',
+        'key' => 'Enter keyword',
+        'ordering' => 'Enter ordering',
+        'email' => 'Enter email address',
+        'password' => 'Enter password',
+        'phone' => 'Enter phone number',
+        'password_confirm' => 'Enter password confirm',
+        'message' => 'Enter message',
     ],
 
 ];

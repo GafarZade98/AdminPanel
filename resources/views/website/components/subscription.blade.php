@@ -7,7 +7,7 @@
             </div>
             <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control border-white p-4" placeholder="@lang('admin.placeholders.email')">
+                    <input type="text" class="form-control border-white p-4" placeholder="@lang('admin.placeholders.phone')">
                     <div class="input-group-append">
                         <button class="btn btn-primary px-4">@lang('website.general.subscribe')</button>
                     </div>

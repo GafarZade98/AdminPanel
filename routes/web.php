@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{AccountController,
     BannerController,
+    CartController,
     CategoryController,
     HomeController,
     OrderController,
@@ -45,7 +46,10 @@ Route::prefix('admin')->middleware('admin')->group(function (){
 Route::middleware('auth')->group(function () {
     Route::get('wishlist', [TestController::class, 'wishlist'])->name('wishlist');
     Route::get('account', [TestController::class, 'account'])->name('account');
-    Route::get('cart', [TestController::class, 'cart'])->name('cart');
+    Route::get('cart', [CartController::class, 'index'])->name('cart');
+    Route::post('cart/store', [CartController::class, 'store'])->name('cart.create');
+    Route::delete('cart/destroy/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::post('cart/update/{id}/{qty}', [CartController::class, 'update'])->name('cart.update');
 });
 Route::get('homepage', [TestController::class, 'homepage'])->name('homepage');
 Route::get('product/{name}', [TestController::class, 'product'])->name('product');
@@ -55,12 +59,13 @@ Route::get('user-login', [TestController::class, 'login'])->name('user-login');
 Route::get('register', [TestController::class, 'register'])->name('register');
 Route::get('about', [TestController::class, 'about'])->name('about');
 Route::get('contact', [TestController::class, 'contact'])->name('contact');
+Route::post('contact/store', [TestController::class, 'contact'])->name('contact.create');
 Route::get('blogs', [TestController::class, 'blogs'])->name('blogs');
 Route::get('blog', [TestController::class, 'blog'])->name('blog');
 Route::get('privacy', [TestController::class, 'privacy'])->name('privacy');
 Route::get('terms', [TestController::class, 'terms'])->name('terms');
 Route::get('contract', [TestController::class, 'contract'])->name('contract');
-Route::get('partners', [TestController::class, 'partners'])->name('partners');
+Route::get('faqs', [TestController::class, 'faqs'])->name('faqs');
 
 Route::get('file-export', [UserController::class, 'userExport'])->name('file-export');
 Localization::route();

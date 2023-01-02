@@ -146,6 +146,21 @@
                                         </div>
 
                                         <div class="form-group col-md-6 mb-2">
+                                            <label for="color">@lang('admin.columns.color')</label>
+                                            <input type="text" name="color" class="form-control" id="color" placeholder="@lang('admin.placeholders.color')">
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-2">
+                                            <label for="size">@lang('admin.columns.size')</label>
+                                            <input type="text" name="size" class="form-control" id="size" placeholder="@lang('admin.placeholders.size')">
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-2">
+                                            <label for="weight">@lang('admin.columns.weight')</label>
+                                            <input type="text" name="weight" class="form-control" id="weight" placeholder="@lang('admin.placeholders.weight')">
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-2">
                                             <label for="price">@lang('admin.columns.price')</label>
                                             <input type="number" name="price" class="form-control" id="price" placeholder="@lang('admin.placeholders.price')">
                                         </div>
@@ -197,6 +212,9 @@
             $('#products-form input[name="name"]').val(products.name);
             $('#products-form input[name="description"]').val(products.description);
             $('#products-form input[name="keyword"]').val(products.keyword);
+            $('#products-form input[name="weight"]').val(products.weight);
+            $('#products-form input[name="size"]').val(products.size);
+            $('#products-form input[name="color"]').val(products.color);
             $('#products-form input[name="price"]').val(products.price);
             $('#products-form input[name="tax"]').val(products.tax);
             $('#products-form input[name="stock"]').val(products.stock);
@@ -236,6 +254,9 @@
             $('#products-form #image-show').attr('src', 'https://kombi.test/storage/' + products.image);
             $('#products-form input[name="description"]').val(products.description);
             $('#products-form input[name="keyword"]').val(products.keyword);
+            $('#products-form input[name="weight"]').val(products.weight);
+            $('#products-form input[name="size"]').val(products.size);
+            $('#products-form input[name="color"]').val(products.color);
             $('#products-form input[name="price"]').val(products.price);
             $('#products-form input[name="tax"]').val(products.tax);
             $('#products-form input[name="stock"]').val(products.stock);

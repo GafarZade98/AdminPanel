@@ -21,7 +21,14 @@
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="{{route('product', $product->getAttribute('code'))}}" class="btn btn-sm text-dark p-0"><i
                                 class="fas fa-eye text-primary mr-1"></i>@lang('website.general.view')</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i
+                        <a class="btn btn-sm text-dark p-0" href="{{ route('cart.create') }}"
+                           onclick="event.preventDefault(); document.getElementById('add-to-cart').submit();">
+
+                            <form id="add-to-cart" action="{{ route('cart.create') }}" method="POST" class="d-none">
+                                <input type="hidden" name="product_id" value="{{$product->getAttribute('id')}}">
+                                <input type="hidden" name="quantity" value="1">
+                                @csrf
+                            </form><i
                                 class="fas fa-shopping-cart text-primary mr-1"></i>@lang('website.general.add_to_cart')
                         </a>
                     </div>

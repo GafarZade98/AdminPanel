@@ -2,49 +2,49 @@
     <div class="row px-xl-5 pt-5">
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             <a href="" class="text-decoration-none">
-                <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
+                <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>{{config('app.name')}}</h1>
             </a>
-            <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+            <p>{{setting('description')}}</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{setting('address')}}</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{setting('email')}}</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{setting('phone')}}</p>
         </div>
         <div class="col-lg-8 col-md-12">
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                    <h5 class="font-weight-bold text-dark mb-4">@lang('website.general.categories')</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                        <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                        @php($categories = \App\Models\Category::active()->whereNull('category_id')->take(5)->get())
+                        @foreach($categories as $category)
+                            <a class="text-dark mb-2" href="{{ route('products', $category->getAttribute('slug')) }}"><i class="fa fa-angle-right mr-2"></i>{{$category->getAttribute('name')}}</a>
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                    <h5 class="font-weight-bold text-dark mb-4">@lang('website.general.quick_links')</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                        <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                        <a class="text-dark mb-2" href="{{ route('homepage') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.homepage')</a>
+                        <a class="text-dark mb-2" href="{{ route('all-products') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.products')</a>
+                        <a class="text-dark mb-2" href="{{ route('about') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.about')</a>
+                        <a class="text-dark mb-2" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.contact')</a>
+                        <a class="text-dark mb-2" href="{{ route('privacy') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.privacy')</a>
+                        <a class="text-dark mb-2" href="{{ route('terms') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.terms')</a>
+                        <a class="text-dark mb-2" href="{{ route('contract') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.contract')</a>
+                        <a class="text-dark" href="{{ route('faqs') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.faqs')</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                    <form action="">
+                    <h5 class="font-weight-bold text-dark mb-4">@lang('website.general.subscription')</h5>
+                    <form action="{{ route('contact.create') }}" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+                            <input type="text" class="form-control border-0 py-4" aria-label="name" name="name" placeholder="@lang('admin.placeholders.name_s')" required="required" />
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                   required="required" />
+                            <input type="text" class="form-control border-0 py-4" aria-label="phone" name="phone" placeholder="@lang('admin.placeholders.phone')" required="required" />
                         </div>
                         <div>
-                            <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                            <button class="btn btn-primary btn-block border-0 py-3" type="submit">@lang('website.general.subscribe')</button>
                         </div>
                     </form>
                 </div>
@@ -54,10 +54,8 @@
     <div class="row border-top border-light mx-xl-5 py-4">
         <div class="col-md-6 px-xl-0">
             <p class="mb-md-0 text-center text-md-left text-dark">
-                &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                by
-                <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a><br>
-                Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                &copy; <a class="text-dark font-weight-semi-bold" href="{{ route('homepage') }}"> {{config('app.name')}}</a>. @lang('website.general.all_right_reserved'). @lang('website.general.created_by')
+                <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">Gafar Zade</a><br>
             </p>
         </div>
         <div class="col-md-6 px-xl-0 text-center text-md-right">

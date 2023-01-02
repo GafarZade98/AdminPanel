@@ -218,8 +218,6 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-
-
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -234,11 +232,8 @@
                             </form>
                         </a>
                     </li>
-
                 </ul>
             </li>
-
         </ul>
     </nav>
-
 </header>

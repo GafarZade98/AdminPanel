@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
             'description' => 'string|nullable',
             'quantity'    => 'integer|nullable',
             'keyword'     => 'string|nullable',
-            'weight'      => 'integer|nullable',
+            'weight'      => 'string|nullable',
             'stock'       => 'integer|required',
             'price'       => 'integer|required',
             'color'       => 'string|nullable',
