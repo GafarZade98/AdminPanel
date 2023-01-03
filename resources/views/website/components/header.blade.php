@@ -11,6 +11,11 @@
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
+
+                @foreach(config('app.locales') as $key => $lang)
+                    <a class="text-dark px-2" href="{{route('locale', $key)}}">{{$key}}</a>
+                @endforeach
+
                 <a class="text-dark px-2" href="{{setting('facebook')}}">
                     <i class="fab fa-facebook-f"></i>
                 </a>
@@ -35,7 +40,7 @@
         <div class="col-lg-6 col-6 text-left">
             <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="@lang('admin.buttons.search')">
+                    <input aria-label="search" type="text" class="form-control" placeholder="@lang('admin.buttons.search')">
                     <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -110,10 +115,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="{{ route('homepage') }}" class="nav-item nav-link active">@lang('website.general.homepage')</a>
-                        <a href="{{ route('all-products') }}" class="nav-item nav-link">@lang('website.general.products')</a>
-                        <a href="{{ route('about') }}" class="nav-item nav-link">@lang('website.general.about')</a>
-                        <a href="{{ route('contact') }}" class="nav-item nav-link">@lang('website.general.contact')</a>
+                        <a href="{{ route('homepage') }}" class="nav-item nav-link @if(request()->url() == route('homepage')) active @endif">@lang('website.general.homepage')</a>
+                        <a href="{{ route('all-products') }}" class="nav-item nav-link @if(request()->url() == route('all-products') || request()->url() == route('products', 'Mal-1')) active @endif">@lang('website.general.products')</a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link @if(request()->url() == route('about')) active @endif">@lang('website.general.about')</a>
+                        <a href="{{ route('contact') }}" class="nav-item nav-link @if(request()->url() == route('contact')) active @endif">@lang('website.general.contact')</a>
                     </div>
                 @auth()
                     <div class="navbar-nav ml-auto py-0">

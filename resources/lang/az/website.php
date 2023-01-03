@@ -60,6 +60,7 @@ return [
         'subtotal' => 'Ara Cəmi',
         'shipping' => 'Çatdırılma',
         'proceed_to_checkout' => 'Sifariş Ver',
+        'forgot_password' => 'Şifrənizi unutmusunuz?',
 
     ],
 ];

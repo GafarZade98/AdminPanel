@@ -60,5 +60,6 @@ return [
         'subtotal' => 'Subtotal',
         'shipping' => 'Shipping',
         'proceed_to_checkout' => 'Proceed to Checkout',
+        'forgot_password' => 'Forgot your password?',
     ],
 ];
