@@ -5,29 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\{Http\RedirectResponse, Http\Request, Support\Facades\Auth};
 use App\{Http\Requests\TestRequest, Models\Category, Models\Product, Models\Test};
 
-class TestController extends Controller
+class WebsiteController extends Controller
 
 {
     public function products(Request $request, $slug)
     {
-        $categoryFilter = $request->get('category_id');
-        $size = $request->get('size');
-        $color = $request->get('color');
-        $price = $request->get('price');
+//        $categoryFilter = $request->get('category_id');
+//        $size = $request->get('size');
+//        $color = $request->get('color');
+//        $price = $request->get('price');
         $search = $request->get('search');
         $limit = $request->get('limit', 1);
 
         $category = Category::where('slug', $slug)->first();
 
-        $products = Product::active()->when($categoryFilter, function ($query) use ($categoryFilter) {
-            $query->where('category_id', $categoryFilter);
+        $products = Product::active()->when($search, function ($query) use ($search) {
+            $query->where('keyword', $search)
+            ->orWhere('name' ,'like','%'.$search.'%')
+            ->orWhere('description' ,'like','%'.$search.'%');
         })->when($slug, function ($query) use ($category) {
             $query->where('category_id', $category->id);
         }
         )->paginate($limit);
-//        ->where('name', 'like', "%$search")
-//        ->orWhere('keyword', 'like', "%$search%")
-//        ->orWhere('description', 'like', "%$search%")
 
         return view('website.pages.products')->with([
             'products' => $products,
@@ -43,38 +42,51 @@ class TestController extends Controller
         ]);
     }
 
-    public function allProducts()
+    public function allProducts(Request $request)
     {
+        $search = $request->get('search');
+        $limit = $request->get('limit', 12);
+
+        $products = Product::active()->when($search, function ($query) use ($search) {
+            $query->where('keyword', $search)
+                ->orWhere('name' ,'like','%'.$search.'%')
+                ->orWhere('description' ,'like','%'.$search.'%');
+        });
+
+        if ($request->get('sort') == 'name'){
+            $products->orderBy('name');
+        }elseif ($request->get('sort') == 'price') {
+            $products->orderBy('price');
+        }
+
         return view('website.pages.products')->with([
-            'products' => Product::active()->paginate(12),
+            'products' => $products->paginate($limit),
             'categories' => Category::active()->whereNull('category_id')->get()
         ]);
     }
 
-    public function about(Request $request)
+    public function about()
     {
         return view('website.pages.about');
     }
 
-    public function contact(Request $request)
+    public function contact()
     {
         return view('website.pages.contact');
     }
 
-    public function homepage(Request $request)
+    public function homepage()
     {
         return view('website.pages.homepage');
     }
 
-    public function login(Request $request)
+    public function login()
     {
         return view('website.components.login');
     }
     public function userLogin(Request $request)
     {
         $request->flash();
-
-
         $credentials = $request->only('email', 'password');
         $remember_me = $request->has('remember_me') ? true : false;
 
@@ -84,42 +96,27 @@ class TestController extends Controller
         return back()->with('error', 'Hatalı Kullanıcı');
     }
 
-    public function register(Request $request)
+    public function register()
     {
         return view('website.components.register');
     }
 
-    public function blogs(Request $request)
-    {
-        return view('website.pages.blogs');
-    }
-
-    public function blog(Request $request)
-    {
-        return view('website.pages.blog');
-    }
-
-    public function privacy(Request $request)
+    public function privacy()
     {
         return view('website.pages.privacy');
     }
 
-    public function terms(Request $request)
+    public function terms()
     {
         return view('website.pages.terms');
     }
 
-    public function contract(Request $request)
-    {
-        return view('website.pages.contract');
-    }
-
-    public function account(Request $request)
+    public function account()
     {
         return view('website.pages.account');
     }
 
-    public function wishlist(Request $request)
+    public function wishlist()
     {
         return view('website.pages.wishlist')->with([
             'products' => Product::active()->paginate(12),
@@ -127,7 +124,7 @@ class TestController extends Controller
         ]);
     }
 
-    public function faqs(Request $request)
+    public function faqs()
     {
         return view('website.pages.faqs');
     }

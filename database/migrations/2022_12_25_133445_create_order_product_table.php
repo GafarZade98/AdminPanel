@@ -14,8 +14,10 @@ class CreateOrderProductTable extends Migration
     public function up()
     {
         Schema::create('order_product', function (Blueprint $table) {
-            $table->foreignId('order_id')->nullable()->index()->constrained()->onDelete('SET NULL');
-            $table->foreignId('product_id')->nullable()->index()->constrained()->onDelete('SET NULL');
+            $table->foreignId('order_id')->nullable();
+            $table->foreignId('product_id')->nullable();
+            $table->string('features')->nullable();
+            $table->float('quantity')->nullable();
         });
     }
 

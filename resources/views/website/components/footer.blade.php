@@ -30,13 +30,13 @@
                         <a class="text-dark mb-2" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.contact')</a>
                         <a class="text-dark mb-2" href="{{ route('privacy') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.privacy')</a>
                         <a class="text-dark mb-2" href="{{ route('terms') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.terms')</a>
-                        <a class="text-dark mb-2" href="{{ route('contract') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.contract')</a>
                         <a class="text-dark" href="{{ route('faqs') }}"><i class="fa fa-angle-right mr-2"></i>@lang('website.general.faqs')</a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">@lang('website.general.subscription')</h5>
                     <form action="{{ route('contact.create') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <input type="text" class="form-control border-0 py-4" aria-label="name" name="name" placeholder="@lang('admin.placeholders.name_s')" required="required" />
                         </div>

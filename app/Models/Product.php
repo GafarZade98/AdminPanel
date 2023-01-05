@@ -16,6 +16,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class)->withDefault();
     }
+    public function order()
+    {
+        return $this->belongsToMany(Order::class);
+    }
     public static function generateCustomCode($prefix = 'SPN', $digits = 8): string
     {
         do {

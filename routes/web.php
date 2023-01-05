@@ -4,6 +4,8 @@ use App\Http\Controllers\{AccountController,
     BannerController,
     CartController,
     CategoryController,
+    ContactController,
+    FaqController,
     HomeController,
     OrderController,
     PartnerController,
@@ -12,7 +14,7 @@ use App\Http\Controllers\{AccountController,
     RoleController,
     SettingController,
     SolutionController,
-    TestController,
+    WebsiteController,
     UserController};
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
@@ -30,42 +32,46 @@ Route::prefix('admin')->middleware('admin')->group(function (){
         Route::put('/{user}', 'edit')->name('account.edit');
         Route::get('/{user}', 'deleteAvatar')->name('account.delete-avatar');
     });
-    Route::resource('/tests', TestController::class)->except(['create', 'edit', 'show']);
+    Route::resource('/tests', WebsiteController::class)->except(['create', 'edit', 'show']);
     Route::resource('/users', UserController::class)->except(['create', 'edit', 'show']);
     Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
+    Route::resource('/faqs', FaqController::class)->except(['create', 'edit', 'show']);
     Route::resource('/permissions', PermissionController::class)->except(['create', 'edit', 'show']);
     Route::resource('/settings', SettingController::class)->except(['create', 'edit', 'show']);
     Route::resource('/solutions', SolutionController::class)->except(['create', 'edit', 'show']);
     Route::resource('/categories', CategoryController::class)->except(['create', 'edit', 'show']);
     Route::resource('/products', ProductController::class)->except(['create', 'edit', 'show']);
-    Route::resource('/orders', OrderController::class)->except(['create', 'edit', 'show']);
     Route::resource('/banners', BannerController::class)->except(['create', 'edit', 'show']);
     Route::resource('/partners', PartnerController::class)->except(['create', 'edit', 'show']);
+    Route::get('/orders',[ OrderController::class, 'view'])->name('orders.view');
+    Route::get('/contacts',[ ContactController::class, 'index'])->name('contacts.index');
+    Route::delete('/contacts/destroy/{contact}',[ ContactController::class, 'destroy'])->name('contacts.destroy');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('wishlist', [TestController::class, 'wishlist'])->name('wishlist');
-    Route::get('account', [TestController::class, 'account'])->name('account');
+    Route::get('account', [WebsiteController::class, 'account'])->name('account');
+    Route::get('wishlist', [WebsiteController::class, 'wishlist'])->name('wishlist');
     Route::get('cart', [CartController::class, 'index'])->name('cart');
     Route::post('cart/store', [CartController::class, 'store'])->name('cart.create');
     Route::delete('cart/destroy/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::post('cart/update/{id}/{qty}', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/orders/create',[ OrderController::class, 'create'])->name('orders.create');
+    Route::get('/orders/checkout',[ OrderController::class, 'checkout'])->name('orders.checkout');
+    Route::post('/orders/update/{order}',[ OrderController::class, 'update'])->name('orders.update');
+
 });
-Route::get('homepage', [TestController::class, 'homepage'])->name('homepage');
-Route::get('product/{name}', [TestController::class, 'product'])->name('product');
-Route::get('products/{slug}', [TestController::class, 'products'])->name('products');
-Route::get('products', [TestController::class, 'allProducts'])->name('all-products');
-Route::get('user-login', [TestController::class, 'login'])->name('user-login');
-Route::get('register', [TestController::class, 'register'])->name('register');
-Route::get('about', [TestController::class, 'about'])->name('about');
-Route::get('contact', [TestController::class, 'contact'])->name('contact');
-Route::post('contact/store', [TestController::class, 'contact'])->name('contact.create');
-Route::get('blogs', [TestController::class, 'blogs'])->name('blogs');
-Route::get('blog', [TestController::class, 'blog'])->name('blog');
-Route::get('privacy', [TestController::class, 'privacy'])->name('privacy');
-Route::get('terms', [TestController::class, 'terms'])->name('terms');
-Route::get('contract', [TestController::class, 'contract'])->name('contract');
-Route::get('faqs', [TestController::class, 'faqs'])->name('faqs');
+Route::get('homepage', [WebsiteController::class, 'homepage'])->name('homepage');
+Route::get('product/{name}', [WebsiteController::class, 'product'])->name('product');
+Route::get('products/{slug}', [WebsiteController::class, 'products'])->name('products');
+Route::get('products', [WebsiteController::class, 'allProducts'])->name('all-products');
+Route::get('user-login', [WebsiteController::class, 'login'])->name('user-login');
+Route::get('register', [WebsiteController::class, 'register'])->name('register');
+Route::get('about', [WebsiteController::class, 'about'])->name('about');
+Route::get('contact', [WebsiteController::class, 'contact'])->name('contact');
+Route::post('contact/store', [ContactController::class, 'create'])->name('contact.create');
+Route::get('privacy', [WebsiteController::class, 'privacy'])->name('privacy');
+Route::get('terms', [WebsiteController::class, 'terms'])->name('terms');
+Route::get('faqs', [WebsiteController::class, 'faqs'])->name('faqs');
 
 Route::get('file-export', [UserController::class, 'userExport'])->name('file-export');
 Localization::route();

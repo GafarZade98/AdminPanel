@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name','city', 'phone', 'zip', 'status'];
+
+    public function product()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function statuses()
+    {
+        return [1=> 1, 2 ,3, 4, 5];
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('image')) {
+if (!function_exists('image')) {
     function image($url): string
     {
         $noPhotoBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAM1BMVEXd3d2ampqXl
@@ -29,21 +29,22 @@ if (! function_exists('image')) {
     }
 }
 
-if(! function_exists('phone_cleaner')){
-    function phone_cleaner($phone = ''): ?string {
-        return substr(str_replace([' ', '-', '(', ')', '+'],'', $phone), -9, 9);
+if (!function_exists('phone_cleaner')) {
+    function phone_cleaner($phone = ''): ?string
+    {
+        return substr(str_replace([' ', '-', '(', ')', '+'], '', $phone), -9, 9);
     }
 }
 
-if(! function_exists('phone_formatter')){
-    function phone_formatter($phone, $countryCode = false, $parentheses = false): ?string {
+if (!function_exists('phone_formatter')) {
+    function phone_formatter($phone, $countryCode = false, $parentheses = false): ?string
+    {
 
         $firstPattern = $countryCode ? '+994 ' : 0;
         $firstPattern = $parentheses ? "({$firstPattern})" : $firstPattern;
 
-        if(  preg_match( '/^(\d{2})(\d{3})(\d{2})(\d{2})$/', phone_cleaner($phone),  $matches ) )
-        {
-            return $firstPattern . $matches[1] . '-' .$matches[2] . '-' . $matches[3] . '-' . $matches[4];
+        if (preg_match('/^(\d{2})(\d{3})(\d{2})(\d{2})$/', phone_cleaner($phone), $matches)) {
+            return $firstPattern . $matches[1] . '-' . $matches[2] . '-' . $matches[3] . '-' . $matches[4];
         }
         return $phone;
     }

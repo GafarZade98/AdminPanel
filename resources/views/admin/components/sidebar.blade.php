@@ -74,6 +74,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('faqs.index')) collapsed @endif"
+               href="{{ route('faqs.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.faqs')</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link @if(request()->url() !== route('partners.index')) collapsed @endif"
                href="{{ route('partners.index') }}">
                 <i class="bi bi-person"></i>
@@ -95,10 +102,17 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @if(request()->url() !== route('orders.index')) collapsed @endif"
-               href="{{ route('orders.index') }}">
+            <a class="nav-link @if(request()->url() !== route('orders.view')) collapsed @endif"
+               href="{{ route('orders.view') }}">
                 <i class="bi bi-person"></i>
                 <span>@lang('admin.sidebar.orders')</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @if(request()->url() !== route('contacts.index')) collapsed @endif"
+               href="{{ route('contacts.index') }}">
+                <i class="bi bi-person"></i>
+                <span>@lang('admin.sidebar.contact')</span>
             </a>
         </li>
         <li class="nav-item">

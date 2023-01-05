@@ -45,8 +45,8 @@
             <table class="table table-responsive-md shadow-sm">
                 <thead>
                     <th>#</th>
-                    <td>@lang('admin.columns.key')</td>
-                    <td>@lang('admin.columns.value')</td>
+                    <td>@lang('admin.columns.name')</td>
+                    <td>@lang('admin.columns.address')</td>
                     <td>@lang('admin.columns.type')</td>
                     <td>@lang('admin.columns.status')</td>
                     @can('create', \App\Models\Order::class)
@@ -55,21 +55,23 @@
                 </thead>
 
                 <tbody>
-                @foreach($orders as $order)
-                    <tr>
-                        <th>{{$order->getAttribute('ordering')}}</th>
-                        <td>{{$order->getAttribute('key')}}</td>
-                        <td>{{$order->getAttribute('value')}}</td>
-                        <td>{{$order->getAttribute('type')}}</td>
-                        <td>@if ($order->getAttribute('status') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
-                        <td>
-                            <a data-orders='@json($order)' class="show" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-eye mx-2"></i></a>
-                            @can('delete', \App\Models\Order::class)
-                                <a data-orders='@json($order)' class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash mx-2"></i></a>
-                            @endcan
-                        </td>
-                    </tr>
-                @endforeach
+                    @foreach($orders as $order)
+                        <tr>
+                            <th>{{$order->getAttribute('name')}}</th>
+                            <td>{{$order->getAttribute('address')}}</td>
+                            <td>{{$order->getAttribute('value')}}</td>
+                            @foreach($order->product as $product)
+                                <td>{{$product}}</td>
+                            @endforeach
+                            <td>@if ($order->getAttribute('status') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>
+                            <td>
+                                <a data-orders='@json($order)' class="show" data-bs-toggle="modal" data-bs-target="#modal"><i class="bi bi-eye mx-2"></i></a>
+                                @can('delete', \App\Models\Order::class)
+                                    <a data-orders='@json($order)' class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash mx-2"></i></a>
+                                @endcan
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 

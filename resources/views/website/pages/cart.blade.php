@@ -12,7 +12,8 @@
             </div>
         </div>
     </div>
-
+    <form action="{{ route('orders.create') }}" method="POST">
+        @csrf
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
@@ -29,6 +30,9 @@
                     </thead>
                     <tbody class="align-middle">
                     @forelse($carts as $cart)
+                        <input type="hidden" name="product_id[]" value="{{$cart->getRelationValue('product')->getAttribute('id')}}">
+                        <input type="hidden" name="quantity[]" value="{{$cart->getAttribute('quantity')}}">
+                        <input type="hidden" name="features[]" value=" {{$cart->getAttribute('color') .' , '. $cart->getAttribute('weight') .' , '. $cart->getAttribute('size') }}">
                         <tr>
                             <td class="align-middle">
                                 <a href="{{ route('product', $cart->getRelationValue('product')->getAttribute('code'))}})">
@@ -60,15 +64,12 @@
                                 </div>
                             </td>
                             <td class="align-middle product-total product-total-{{$cart->getAttribute('id')}}">{{ $totalPrice[] = ($cart->getAttribute('quantity') * $cart->getRelationValue('product')->getAttribute('price'))}}</td>
-                            <td class="align-middle"><button data-carts='@json($cart)' class="btn btn-sm btn-primary delete"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><a data-carts='@json($cart)' class="btn btn-sm btn-primary delete"><i class="fa fa-times"></i></a></td>
                         </tr>
                     @empty
                         <div class="alert alert-success">@lang('website.general.cart_is_empty')</div>
                     @endforelse
 
-                    <form action="" id="delete-form" method="POST">
-                        @csrf @method('DELETE')
-                    </form>
                     </tbody>
                 </table>
             </div>
@@ -100,12 +101,13 @@
                             <h5 class="font-weight-bold">@lang('admin.columns.total_price')</h5>
                             <h5 class="font-weight-bold total">@if(isset($totalPrice)) {{array_sum($totalPrice) + $shipping}} @endif AZN</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">@lang('website.general.proceed_to_checkout')</button>
+                        <button type="submit" class="btn btn-block btn-primary my-3 py-3">@lang('website.general.proceed_to_checkout')</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </form>
     <form action="" id="delete-form" method="POST" class="d-none">
         @csrf @method('DELETE')
     </form>
@@ -165,17 +167,10 @@
         })
         $('.delete').on('click', function () {
             let carts = $(this).data('carts');
-            // let  asd = $(this).html();
-
-            // console.log(asd)
-
             let form = "{{route('cart.destroy', 'id')}}".replace('id', carts.id)
             $('#delete-form').attr('action', form)
             $('#delete-form').submit()
-
         })
-
-
     </script>
 
 @endsection

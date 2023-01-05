@@ -26,7 +26,8 @@
             <div class="col-lg-7 mb-5">
                 <div class="contact-form">
                     <div id="success"></div>
-                    <form name="sentMessage" action="{{ route('contact.create') }}" method="POST" id="contactForm" novalidate="novalidate">
+                    <form action="{{ route('contact.create') }}" method="POST" >
+                        @csrf
                         <div class="control-group">
                             <input type="text" name="name" class="form-control" id="name" placeholder="@lang('admin.placeholders.name_s')"
                                    required="required" data-validation-required-message="@lang('admin.placeholders.name_s')" />

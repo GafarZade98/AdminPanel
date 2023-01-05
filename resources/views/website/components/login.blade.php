@@ -32,8 +32,8 @@
                                id="input-password" class="form-control mb-1"/>
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" class="m-1">@lang('website.general.forgot_password')</a>
+                        @endif
                     </div>
-                    @endif
                     <input type="submit" value="@lang('website.general.do_login')" class="btn btn-primary"/>
 
                 </form>

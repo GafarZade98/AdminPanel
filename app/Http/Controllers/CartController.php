@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CartRequest;
 use App\Models\Cart;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -26,7 +25,6 @@ class CartController extends Controller
 
     public function update($id, $qty)
     {
-//        dd($id);
         $cart = Cart::find($id);
         $cart->quantity = $qty;
         $cart->save();
@@ -37,6 +35,5 @@ class CartController extends Controller
     {
         $cart->delete();
         return back()->with('success', trans('admin.notification.success'));
-
     }
 }
