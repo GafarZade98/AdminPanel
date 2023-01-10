@@ -18,7 +18,7 @@
                 <div class="row px-xl-5">
                     <div class="col-lg-8">
                         <div class="mb-4">
-                            <h4 class="font-weight-semi-bold mb-4">@lang('website.general.billing_ddress')</h4>
+                            <h4 class="font-weight-semi-bold mb-4">@lang('website.general.billing_address')</h4>
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label>@lang('admin.columns.name_s')</label>
@@ -40,7 +40,7 @@
                                     <label>@lang('admin.columns.address')</label>
                                     <input class="form-control" aria-label="address" type="text" name="address" placeholder="@lang('admin.placeholders.address')">
                                 </div>
-
+                                <input type="hidden" name="shipping" value="{{$shipping}}">
         {{--                        <div class="col-md-6 form-group">--}}
         {{--                            <label>Country</label>--}}
         {{--                            <select class="custom-select">--}}
@@ -63,8 +63,8 @@
     {{--                            @foreach($orders as $order)--}}
                                     @foreach($orders->product as $product)
                                         <div class="d-flex justify-content-between">
-                                            <p>{{$product->getAttribute('name')}}</p>
-                                            <p>{{ $totalPrice[] = $product->getAttribute('price')}} AZN</p>
+                                            <p>{{$product->pivot->quantity}} x {{$product->getAttribute('name')}}</p>
+                                            <p>{{ $totalPrice[] = $product->getAttribute('price') * $product->pivot->quantity}} AZN</p>
                                         </div>
     {{--                                @endforeach--}}
                                 @endforeach
@@ -92,11 +92,13 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                        <input type="radio" checked class="custom-control-input" name="payment" id="paypal">
                                         <label class="custom-control-label" for="paypal">@lang('website.general.cash')</label>
                                     </div>
                                 </div>
                             </div>
+
+                            <input type="hidden" name="amount" value="{{array_sum($totalPrice)}}">
                             <div class="card-footer border-secondary bg-transparent">
                                 <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">@lang('website.general.place_order')</button>
                             </div>
@@ -106,6 +108,6 @@
             </div>
         </form>
     @else
-        <div class="alert col-12">@lang('website.general.cart_is_empty')</div>
+        <div class="alert alert-success text-center col-12">@lang('website.general.cart_is_empty')</div>
     @endif
 @endsection

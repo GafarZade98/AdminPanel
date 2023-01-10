@@ -24,6 +24,12 @@ class OrderController extends Controller
         ]);
     }
 
+    public function myOrders()
+    {
+        return view('website.pages.my-orders')->with([
+            'orders' => Order::where('user_id', auth()->id())->orderBy('status')->get()]);
+    }
+
     public function create(Request $request)
     {
         $qty = $request->get('quantity');
@@ -48,6 +54,7 @@ class OrderController extends Controller
     {
         $validated = $request->validated();
         $validated['status'] = 2;
+        $validated['code'] = Order::generateCustomCode();
 
         $order->update($validated);
         return back()->with('success', trans('admin.notification.success'));
@@ -56,8 +63,15 @@ class OrderController extends Controller
     public function checkout()
     {
         return view('website.pages.checkout')->with([
-            'orders' => Order::where('user_id', auth()->id())->where('status', 1)->first(),
+            'orders' => Order::where('user_id', auth()->id())->where('status', 1)->OrderByDesc('id')->first(),
             'shipping' => 7
         ]);
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return back()->with('success', trans('admin.notification.success'));
+
     }
 }

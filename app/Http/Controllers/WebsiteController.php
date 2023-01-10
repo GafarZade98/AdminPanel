@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\{Http\RedirectResponse, Http\Request, Support\Facades\Auth};
-use App\{Http\Requests\TestRequest, Models\Category, Models\Product, Models\Test};
+use App\{Http\Requests\TestRequest, Models\Category, Models\Faq, Models\Product, Models\Test};
 
 class WebsiteController extends Controller
 
@@ -15,7 +15,7 @@ class WebsiteController extends Controller
 //        $color = $request->get('color');
 //        $price = $request->get('price');
         $search = $request->get('search');
-        $limit = $request->get('limit', 1);
+        $limit = $request->get('limit', 12);
 
         $category = Category::where('slug', $slug)->first();
 
@@ -113,7 +113,7 @@ class WebsiteController extends Controller
 
     public function account()
     {
-        return view('website.pages.account');
+        return view('website.pages.my-info');
     }
 
     public function wishlist()
@@ -126,6 +126,7 @@ class WebsiteController extends Controller
 
     public function faqs()
     {
-        return view('website.pages.faqs');
+        $faqs = Faq::active()->get();
+        return view('website.pages.faqs')->with('faqs', $faqs);
     }
 }

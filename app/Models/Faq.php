@@ -10,4 +10,9 @@ class Faq extends Model
     use HasFactory;
 
     protected $fillable = ['question', 'answer', 'is_active', 'ordering'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }

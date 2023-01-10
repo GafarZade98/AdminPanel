@@ -12,6 +12,10 @@ return [
         'products' => 'Mallar',
         'orders' => 'Sifarişlər',
         'banners' => 'Bannerlər',
+        'solutions' => 'Xidmətlər',
+        'faqs' => 'Suallar',
+        'partners' => 'Partnyorlar',
+        'contacts' => 'Əlaqələr',
     ],
 
     'notification' => [
@@ -63,7 +67,28 @@ return [
         'description' => 'Açıqlama',
         'ordering' => 'Sıralama',
         'parent-category' => 'Ana Kategoriya',
+        'child-category' => 'Alt Kategoriya',
         'features' => 'Xüsusiyyətlər',
+        'total' => 'Toplam',
+        'zip' => 'Poçt Kodu',
+        'city' => 'Şəhər',
+        'code' => 'Sipariş Nömrəsi',
+        'product_code' => 'Məhsul Nömrəsi',
+
+
+        'title' => 'Başlıq',
+        'link' => 'Link',
+        'question' => 'Sual',
+        'answer' => 'Cavab',
+        'category' => 'Kateqoriya',
+        'color' => 'Rəng',
+        'size' => 'Ölçü',
+        'weight' => 'Ağırlıq',
+        'tax' => 'Vergi',
+        'stock' => 'Stok',
+        'message' => 'Mesaj',
+        'amount' => 'Məbləğ',
+        'product' => 'Məhsul',
     ],
 
     'placeholders' => [
@@ -77,6 +102,29 @@ return [
         'phone' => 'Telefon nömrənizi daxil edin',
         'password_confirm' => 'Şifrənizi təkrar daxil edin',
         'message' => 'Mesajınızı daxil edin',
+        'city' => 'Şəhər daxil edin',
+        'zip' => 'Poçt kodu daxil edin',
+        'address' => 'Adres daxil edin',
+        'title' => 'Başlıq daxil edin',
+        'route' => 'Link daxil edin',
+        'question' => 'Sual daxil edin',
+        'answer' => 'Cavab daxil edin',
+        'color' => 'Rəng daxil edin',
+        'size' => 'Ölçü daxil edin',
+        'weight' => 'Çəki daxil edin',
+        'tax' => 'Vergi daxil edin',
+        'stock' => 'Qalan sayı daxil edin',
     ],
+
+    'order' => [
+        'status' => [
+            1 => 'Natamam Sipariş',
+            2 => 'Qəbul Olundu',
+            3 => 'Hazırlanır',
+            4 => 'Göndərildi',
+            5 => 'Tamamlandı',
+        ]
+    ],
+
 
 ];

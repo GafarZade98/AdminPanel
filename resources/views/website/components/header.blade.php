@@ -95,13 +95,14 @@
                                         @endforeach
                                     </div>
                                 @endif
-                         @endforeach
-                    </div>
+                            @endforeach
+
                     @foreach($categories as $cat)
                         @if(count($cat->categories) == null)
                             <a href="{{ route('products', $cat->getAttribute('slug')) }}" class="nav-item nav-link">{{$cat->getAttribute('name')}} </a>
                         @endif
                     @endforeach
+                        </div>
                 </div>
             </nav>
         </div>

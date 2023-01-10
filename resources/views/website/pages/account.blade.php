@@ -14,12 +14,38 @@
     </div>
 
     <div class="container-fluid pt-5">
-        <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">@lang('website.general.about')</span></h2>
-        </div>
         <div class="row px-xl-5">
-            <div class="col-lg-7 mb-5">
-                asdsad
-                <div>
+            <div class="container">
+                <div class="main-body">
+                    <div class="row gutters-sm">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <a class="mb-0 @if(request()->url() == route('account')) active @endif" href="{{ route('account') }}">@lang('website.general.account')</a>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <a class="mb-0 @if(request()->url() == route('orders.my-orders')) active @endif" href="{{ route('orders.my-orders') }}">@lang('website.general.my_orders')</a>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+
+                                        <a class=mb-0" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">@lang('website.general.signOut')
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @yield('my-account')
+                    </div>
                 </div>
-            </div>@endsection
+            </div>
+        </div>
+    </div>
+
+@endsection

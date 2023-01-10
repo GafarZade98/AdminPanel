@@ -11,7 +11,7 @@ class CategorySlider extends Component
 
     public function __construct()
     {
-        $this->categories = Category::active()->get();
+        $this->categories = Category::active()->take(6)->get();
     }
 
     public function render()

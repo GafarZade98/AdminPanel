@@ -151,7 +151,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
-                        <form action="{{ route('all-products') }}">
+                        <form id="filter" action="{{ route('all-products') }}">
 
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="col-6 input-group">
@@ -167,9 +167,9 @@
                                     <select id="input-sort" name="sort" class="form-control">
                                         <option @if(request()->get('sort') == 'id') selected @endif value="id">@lang('website.general.default')
                                         </option>
-                                        <option value="name" @if(request()->get('sort') == 'name') selected @endif>@lang('admin.placeholders.name') (A - Z)
+                                        <option value="name" @if(request()->get('sort') == 'name') selected @endif>@lang('website.general.name') (A - Z)
                                         </option>
-                                        <option value="price" @if(request()->get('sort') == 'price') selected @endif>@lang('price') (@lang('website.general.low_to_high'))
+                                        <option value="price" @if(request()->get('sort') == 'price') selected @endif>@lang('admin.columns.price') (@lang('website.general.low_to_high'))
                                         </option>
                                     </select>
                                 </div>
@@ -202,21 +202,21 @@
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="{{ route('product', $product->getAttribute('code')) }}"
-                                       class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>@lang('website.general.view')</a>
-                                    <a class="btn btn-sm text-dark p-0" href="{{ route('cart.create') }}"
-                                       onclick="event.preventDefault(); document.getElementById('add-to-cart').submit();">
-                                        <form id="add-to-cart" action="{{ route('cart.create') }}" method="POST" class="d-none">
-                                            <input type="hidden" name="product_id" value="{{$product->getAttribute('id')}}">
-                                            <input type="hidden" name="quantity" value="1">
-                                            @csrf
-                                        </form>
-                                        <i class="fas fa-shopping-cart text-primary mr-1"></i>@lang('website.general.add_to_cart')</a>
+                                    <a href="{{route('product', $product->getAttribute('code'))}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>@lang('website.general.view')</a>
+                                    @auth()
+                                        <a class="btn btn-sm text-dark p-0" href="{{ route('cart.create') }}"
+                                           onclick="event.preventDefault(); document.getElementById('add-to-cart').submit();">
+                                            <form id="add-to-cart" action="{{ route('cart.create') }}" method="POST" class="d-none">
+                                                <input type="hidden" name="product_id" value="{{$product->getAttribute('id')}}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                @csrf
+                                            </form><i class="fas fa-shopping-cart text-primary mr-1"></i>@lang('website.general.add_to_cart')
+                                        </a>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
                     @endforeach
-
                     <div class="col-12 pb-1">
                         {{$products->appends(request()->input())->links()}}
                     </div>

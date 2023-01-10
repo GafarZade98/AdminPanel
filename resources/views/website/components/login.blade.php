@@ -30,10 +30,20 @@
                         <label class="control-label" for="input-password">@lang('admin.columns.password')</label>
                         <input type="password" name="password" value="" placeholder="@lang('admin.placeholders.password')"
                                id="input-password" class="form-control mb-1"/>
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="m-1">@lang('website.general.forgot_password')</a>
-                        @endif
                     </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div >
+                            <label class="form-label" for="remember">{{ __('Remember Me') }}</label>
+                            <input class="form-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        </div>
+                        <div>
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="m-1 text-right">@lang('website.general.forgot_password')</a>
+                            @endif
+                        </div>
+                    </div>
+
                     <input type="submit" value="@lang('website.general.do_login')" class="btn btn-primary"/>
 
                 </form>

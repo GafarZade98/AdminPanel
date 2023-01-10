@@ -14,7 +14,7 @@
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">@lang('website.general.categories')</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        @php($categories = \App\Models\Category::active()->whereNull('category_id')->take(5)->get())
+                        @php($categories = \App\Models\Category::active()->take(7)->get())
                         @foreach($categories as $category)
                             <a class="text-dark mb-2" href="{{ route('products', $category->getAttribute('slug')) }}"><i class="fa fa-angle-right mr-2"></i>{{$category->getAttribute('name')}}</a>
                         @endforeach

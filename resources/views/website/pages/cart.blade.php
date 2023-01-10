@@ -16,7 +16,7 @@
         @csrf
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
+            <div class=" @if(count($carts) > 0) col-lg-8 @else col-lg-12 @endif table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                     <tr>
@@ -73,7 +73,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-lg-4">
+            @if(count($carts) > 0)
+             <div class="col-lg-4">
 {{--                <form class="mb-5" action="">--}}
 {{--                    <div class="input-group">--}}
 {{--                        <input type="text" class="form-control p-4 product-quantity-{{$cart->getAttribute('id')}}" placeholder="Coupon Code">--}}
@@ -105,6 +106,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
     </form>

@@ -61,6 +61,15 @@ return [
         'shipping' => 'Çatdırılma',
         'proceed_to_checkout' => 'Sifariş Ver',
         'forgot_password' => 'Şifrənizi unutmusunuz?',
-
+        'default' => 'Varsayılan',
+        'low_to_high' => 'Azdan Çoxa',
+        'name' => 'Ad',
+        'checkout' => 'Sipariş',
+        'billing_address' => 'Çatdırılma Adresi',
+        'orderTotal' => 'Sipariş Toplamı',
+        'payment' => 'Ödəniş',
+        'cash' => 'Nəğd',
+        'place_order' => 'Siparişi Tamamla',
+        'my_orders' => 'Siparişlərim',
     ],
 ];

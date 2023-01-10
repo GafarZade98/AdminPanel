@@ -47,7 +47,7 @@
                     <th>#</th>
                     <td>@lang('admin.columns.image')</td>
                     <td>@lang('admin.columns.name')</td>
-                    <td>@lang('admin.columns.parent-category')</td>
+                    <td>@lang('admin.columns.child-category')</td>
                     <td>@lang('admin.columns.description')</td>
                     <td>@lang('admin.columns.key')</td>
                     <td>@lang('admin.columns.status')</td>
@@ -62,9 +62,11 @@
                         <th>{{$loop->iteration}}</th>
                         <td><img src="{{image($category->getAttribute('image'))}}" width="75" alt=""></td>
                         <td>{{$category->getAttribute('name')}}</td>
+                        <td>
                         @foreach($category->categories as $cat)
-                            <td>{{$cat->getAttribute('name')}}</td>
+                           {{$cat->getAttribute('name')}} {{$loop->last ? '' : '/'}}
                         @endforeach
+                        </td>
                         <td>{{$category->getAttribute('description')}}</td>
                         <td>{{$category->getAttribute('keyword')}}</td>
                         <td>@if ($category->getAttribute('is_active') == 1) <span class="text-secondary">@lang('admin.fields.active')</span> @else <span class="text-danger">@lang('admin.fields.passive')</span> @endif</td>

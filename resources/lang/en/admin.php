@@ -12,6 +12,13 @@ return [
         'products' => 'Products',
         'orders' => 'Orders',
         'banners' => 'Banners',
+        'solutions' => 'Solutions',
+        'faqs' => 'Faqs',
+        'partners' => 'Partner',
+        'contacts' => 'Contacts',
+        'contact' => 'Contact',
+
+
     ],
 
     'notification' => [
@@ -63,7 +70,27 @@ return [
         'description' => 'Description',
         'ordering' => 'Ordering',
         'parent-category' => 'Parent Category',
+        'child-category' => 'Child Category',
         'features' => 'Features',
+        'total' => 'Total',
+        'zip' => 'Zipcode',
+        'city' => 'City',
+        'title' => 'Title',
+        'link' => 'Link',
+        'question' => 'Question',
+        'answer' => 'Answer',
+        'category' => 'Category',
+        'color' => 'Color',
+        'size' => 'Size',
+        'weight' => 'Weight',
+        'tax' => 'Tax',
+        'stock' => 'Stock',
+        'message' => 'Message',
+        'amount' => 'Amount',
+        'product' => 'Product',
+        'code' => 'Order Number',
+        'product_code' => 'Product Number',
+
     ],
 
     'placeholders' => [
@@ -77,6 +104,27 @@ return [
         'phone' => 'Enter phone number',
         'password_confirm' => 'Enter password confirm',
         'message' => 'Enter message',
+        'city' => 'Enter city',
+        'zip' => 'Enter zipcode',
+        'address' => 'Enter address',
+        'title' => 'Enter title',
+        'route' => 'Enter route',
+        'question' => 'Enter question',
+        'answer' => 'Enter answer',
+        'color' => 'Enter color',
+        'size' => 'Enter size',
+        'weight' => 'Enter weight',
+        'tax' => 'Enter tax',
+        'stock' => 'Enter stock',
     ],
 
+    'order' => [
+        'status' => [
+            1 => 'Incomplete Order',
+            2 => 'Accepted',
+            3 => 'Preparing',
+            4 => 'Sent',
+            5 => 'Done',
+        ]
+    ],
 ];

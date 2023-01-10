@@ -14,6 +14,8 @@ class OrderRequest extends FormRequest
             'zip' => 'string|nullable',
             'city' => 'string|nullable',
             'address' => 'string|nullable',
+            'amount' => 'string|nullable',
+            'shipping' => 'string|nullable',
         ];
     }
 }

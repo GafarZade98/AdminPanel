@@ -16,11 +16,13 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class)->withDefault();
     }
+
     public function order()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class)->withPivot(['quantity', 'features']);
     }
-    public static function generateCustomCode($prefix = 'SPN', $digits = 8): string
+
+    public static function generateCustomCode($prefix = 'PRD', $digits = 8): string
     {
         do {
             $code = $prefix . str_pad(rand(0, pow(10, $digits) - 1), $digits, '0', STR_PAD_LEFT);
