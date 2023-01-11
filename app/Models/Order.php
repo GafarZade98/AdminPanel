@@ -27,7 +27,16 @@ class Order extends Model
 
     public function statuses()
     {
-        return [1=> 1, 2 ,3, 4, 5];
+        return [1=> 1, 2, 3, 4, 5];
     }
 
+    public function setPhoneAttribute($value): ?string
+    {
+        return $this->attributes['phone'] = phone_cleaner($value);
+    }
+
+    public function getPhoneAttribute($value): ?string
+    {
+        return phone_formatter($value, true);
+    }
 }

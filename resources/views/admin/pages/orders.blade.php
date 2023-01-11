@@ -1,5 +1,5 @@
 @extends('admin.layout')
-
+@section('title', 'Admin Panel | ' . trans('admin.sidebar.orders'))
 @section('content')
 <main id="main" class="main">
     <div>
@@ -46,14 +46,12 @@
                 <thead>
                     <th>#</th>
                     <td>@lang('admin.columns.name_s')</td>
+                    <td>@lang('admin.columns.code')</td>
                     <td>@lang('admin.columns.phone')</td>
                     <td>@lang('admin.columns.city')</td>
                     <td>@lang('admin.columns.amount')</td>
                     <td>@lang('website.general.shipping')</td>
                     <td>@lang('admin.columns.status')</td>
-                    @can('create', \App\Models\Order::class)
-                    <td><button class="btn btn-outline-success create" data-bs-toggle="modal" data-bs-target="#modal">@lang('admin.buttons.create')</button></td>
-                    @endcan
                 </thead>
 
                 <tbody>
@@ -61,6 +59,7 @@
                         <tr data-bs-toggle="collapse" data-bs-target="#collapseOrder-{{$order->getAttribute('id')}}">
                             <th>{{$loop->iteration}}</th>
                             <th>{{$order->getAttribute('name')}}</th>
+                            <th>{{optional($order)->getAttribute('code')}}</th>
                             <th>{{$order->getAttribute('phone')}}</th>
                             <th>{{$order->getAttribute('city')}}</th>
                             <td>{{$order->getAttribute('amount')}}</td>

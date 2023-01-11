@@ -35,4 +35,14 @@ class ContactController extends Controller
         $contact->delete();
         return back()->with('success', trans('admin.notification.success'));
     }
+
+    public function setPhoneAttribute($value): ?string
+    {
+        return $this->attributes['phone'] = phone_cleaner($value);
+    }
+
+    public function getPhoneAttribute($value): ?string
+    {
+        return phone_formatter($value, true);
+    }
 }

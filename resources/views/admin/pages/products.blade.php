@@ -1,5 +1,5 @@
 @extends('admin.layout')
-
+@section('title', 'Admin Panel | ' . trans('admin.sidebar.products'))
 @section('content')
     <main id="main" class="main">
         <div>
@@ -46,6 +46,7 @@
                     <thead>
                     <th>#</th>
                     <td>@lang('admin.columns.image')</td>
+                    <td>@lang('admin.columns.product_code')</td>
                     <td>@lang('admin.columns.name')</td>
                     <td>@lang('admin.columns.category')</td>
                     <td>@lang('admin.columns.description')</td>
@@ -61,6 +62,7 @@
                         <tr>
                             <th>{{$loop->iteration}}</th>
                             <td><img src="{{image($product->getAttribute('image'))}}" width="75" alt=""></td>
+                            <td>{{$product->getAttribute('code')}}</td>
                             <td>{{$product->getAttribute('name')}}</td>
                             <td>{{$product->getRelationValue('category')->getAttribute('name')}}</td>
                             <td>{{$product->getAttribute('description')}}</td>

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\{RedirectResponse, Request};
 use App\Http\Requests\OrderRequest;
-use App\Models\Cart;
-use App\Models\Order;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Models\{Cart, Order};
 
 class OrderController extends Controller
 {
-
     public function view(Request $request)
     {
         $search = $request->get('search');
@@ -19,7 +16,11 @@ class OrderController extends Controller
         return view('admin.pages.orders')->with([
             'orders' => Order::query()
                 ->when($search, fn($query) => $query
-                    ->where('name', 'like', "%$search%"))
+                    ->where('name', 'like', "%$search%")
+                    ->orWhere('code', 'like', "%$search%")
+                    ->orWhere('phone', 'like', "%$search%")
+                    ->orWhere('city', 'like', "%$search%")
+                )
                 ->paginate($limit),
         ]);
     }

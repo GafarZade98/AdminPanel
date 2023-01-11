@@ -33,6 +33,5 @@ class User extends Authenticatable
     {
         return phone_formatter($value, true);
     }
-
 }
 

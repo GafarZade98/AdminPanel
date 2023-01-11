@@ -1,5 +1,5 @@
 @extends('admin.layout')
-
+@section('title', 'Admin Panel | ' . trans('admin.sidebar.permissions'))
 @section('content')
 <main id="main" class="main">
     <div>
